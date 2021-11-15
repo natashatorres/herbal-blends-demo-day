@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Herbal Blends App</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/8ea013bdc7.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="normalize.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light pt-5 pb-4" fixed-top  role="navigation">
+        <div class="container-xxl">
+            <!-- navbar brand / title -->
+            <a class="navbar-brand" href="/">
+            <img src="img/logo.png" class="logo" alt="logo that reads herbal blends"  class="d-inline-block align-top" alt="">
+            </a>
+
+            <!-- toggle button for mobile nav -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+
+            <div class="collapse navbar-collapse justify-content-end align-center" id="main-nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/artistdirectory">Directory</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </nav>
+
+</header>
+  <div class="banner">
+    <div class="signIn">
+      <span>Please log-in or sign-up to order:</span>
+      <a href="/login" class="btn btn-default" required>Login</a>
+      <a href="/signup" class="btn btn-default">Signup</a>
+  
+    </div>
+   
+  </div>
+
+  <div>
+  <button type="button"></button>
+  </div>
+
+  <a href="/cart">Cart</a>
+  <form action="/cart" method="POST">
+
+    <div class="signinContainer">
+     
+    </div>
+    <section class="title">
+      <h1>Choose one herb from each category:</h1>
+    </section>
+    <section class="orderItems">
+
+      <ul class="herbs">
+        <% for(var i=0; i<base.length; i++) {%>
+          <li class="herb">
+            <span class="herbName">
+              <%= base[i].name %>
+            </span>
+            <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
+
+            <span class="herbProp">
+              <%= base[i].medicinalProp %>
+            </span>
+            <span class="herbPos">
+              <%= base[i].component %>
+            </span>
+            <!-- <span><%= base[i].liked %></span>
+        <span><i class="fas fa-heart" aria-hidden="true"></i></span> 
+        <span><i class="far fa-heart" aria-hidden="true"></i></span>
+
+        <% if(base[i].liked > 0){ %>
+          <span><i class="fas fa-heart liked" aria-hidden="true"></i></span>
+          <%} else {%>
+          <span><i class="far fa-heart liked" aria-hidden="true"></i></span> 
+          <%}%> -->
+
+          </li>
+          <% } %>
+      </ul>
+    </section>
+
+
+    <section class="orderItems">
+      <ul class="herbs">
+        <% for(var i=0; i<flavor.length; i++) {%>
+          <li class="herb">
+            <span class="herbName">
+              <%= flavor[i].name %>
+            </span>
+            <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
+
+            <span class="herbProp">
+              <%= flavor[i].medicinalProp %>
+            </span>
+            <span class="herbPos">
+              <%= flavor[i].component %>
+            </span>
+            <!-- <span><%= flavor[i].liked %></span>
+        <span><i class="fas fa-heart" aria-hidden="true"></i></span> 
+        <span><i class="far fa-heart" aria-hidden="true"></i></span>
+
+        <% if(flavor[i].liked > 0){ %>
+          <span><i class="fas fa-heart liked" aria-hidden="true"></i></span>
+          <%} else {%>
+          <span><i class="far fa-heart liked" aria-hidden="true"></i></span> 
+          <%}%> -->
+
+          </li>
+          <% } %>
+      </ul>
+
+    </section>
+
+    <section class="orderItems">
+
+      <ul class="herbs">
+        <% for(var i=0; i<support.length; i++) {%>
+          <li class="herb">
+            <span class="herbName">
+              <%= support[i].name %>
+            </span>
+            <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
+
+            <span class="herbProp">
+              <%= support[i].medicinalProp %>
+            </span>
+            <span class="herbPos">
+              <%= support[i].component %>
+            </span>
+            <!-- <span><%= support[i].liked %></span>
+        <span><i class="fas fa-heart" aria-hidden="true"></i></span> 
+        <span><i class="far fa-heart" aria-hidden="true"></i></span>
+
+        <% if(support[i].liked > 0){ %>
+          <span><i class="fas fa-heart liked" aria-hidden="true"></i></span>
+          <%} else {%>
+          <span><i class="far fa-heart liked" aria-hidden="true"></i></span> 
+          <%}%> -->
+          </li>
+          <% } %>
+      </ul>
+    </section>
+
+    <section class="button">
+      <button type="submit">ENTER</button>
+    </section>
+
+  </form>
+
+
+
+
+
+  <!-- form creates a fetch-->
+
+  <script src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

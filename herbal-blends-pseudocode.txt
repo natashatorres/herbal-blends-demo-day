@@ -1,0 +1,104 @@
+// PSEUDO CODE
+// - wire framing —> 
+// how I want the app to look, 
+an app to order medicinal herbs to create their own spliff
+
+herbs:
+Rasberry Leaf
+medicinal properties: sedative, calms nervous system, supports in menstruation relief
+component: Base
+
+Bergamont
+medicinal properties: lung antiseptic, uplifting energy, immune-boosting 
+component: Base
+
+Mugwort
+medicinal properties: alleviates colds, digestive issues, relaxes bodys, enhances dreams
+component: Base
+
+Skullcap
+medicinal properties: reduces anxiety and insomnia, helps with headaches
+component: Flavor
+
+Lemon Balm
+medicinal properties: calming herb, eases pain, insomnia
+component: Flavor
+
+Chamomile
+medicinal properties: inflammation relief, insomnia, calming herb
+component: Flavor
+
+Rose Petals
+medicinal properties: midly sedative, antiseptic, anti-inflammatory, reduces anxiety
+component: Support
+
+Eucalyptus
+medicinal properties: relieves sore throat, decongestant, pain relief
+component: Support
+
+Blue Lotus
+medicinal properties: sleep aid, anxiety relief
+component: Support
+
+
+// what I want it to do / how users will interact
+allow users to sign up and create an account/log-in
+a menu of herbs to choose from to create an herbal spliff/blend
+allow users to add multiple items to their spliff/blend
+a link that takes you to the herb page where they can add comments or star the herb
+allow users to rate the herbs/leave comments
+get a confirmation of their order
+
+
+// properties to send to post method
+what herbs the user clicks on 
+
+
+// - run server 
+// - create new collection in MongoDB --> change collection names in code (db.collection('<collectionName>'))
+// - check connection to my server 
+
+// - set up front end (inputs, where I want things to be positioned (affects childnodes))
+
+//routes
+// - GET —> how many pages in my app? how many collections? 
+//--> herb list: rename res.render('index.ejs', {<collectionName>: result})
+//--> confirmation page 
+
+// - POST —> form inside of index.ejs -> what inputs / request body information do I want to send to the database? 
+name 
+order
+
+// - PUT —> fetch call through main.js | what am I updating? what identifiers will I use to find that specific document?
+// --> send idenitifier information inside of fetch body. every property inside of JSON body request = req.body.<property> in server.js
+the customers order
+
+// - DELETE —> fetch call through main.js | what identifiers will I use to find that specific document?
+
+
+//how to make project work through https://
+
+app listen:
+const server = https.createServer(credentials, app);
+server.listen(port);
+
+
+//goes into making a https:
+const https  = require('https')
+const fs = require('fs')
+const privateKey  = fs.readFileSync('server.key', 'utf8');
+const certificate = fs.readFileSync('server.cert', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+
+server.cert, server.key files in main area of folder
+
+
+//stripe receipts
+https://stripe.com/docs/receipts
+
+//checkout with stripe
+https://www.youtube.com/watch?v=1r-F3FIONl8
+https://github.com/WebDevSimplified/stripe-checkout-simple/blob/main/server/server.js
+
+//handle errors
+https://stripe.com/docs/api/errors/handling
