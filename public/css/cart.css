@@ -1,25 +1,22 @@
 body{
   margin: 0;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   font-size: 15px;
 }
 
-.banner{
+
+nav{
   background-color: rgb(241 242 242);
 }
 
-.bannerContent{
-  width: auto;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+.logo{
+width: 15em;
 }
 
-img{
-width: 60em;
-
+.navbar-toggler-icon{
+  width: 10px;
 }
 
 h1{
@@ -66,17 +63,5 @@ h3{
   display:none;
 }
 
-.btn{
-  background-color:rgb(224 235 207);
-  height:4em;
-  width: 20em;
-  border:none;
-  padding:1em 5em;
-  color:black;
-  text-transform: uppercase;
-  text-decoration: none;
 
-  
-
-}
 

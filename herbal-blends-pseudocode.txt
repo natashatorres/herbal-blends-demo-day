@@ -40,6 +40,8 @@ Blue Lotus
 medicinal properties: sleep aid, anxiety relief
 component: Support
 
+//leave a review of their order 
+
 
 // what I want it to do / how users will interact
 allow users to sign up and create an account/log-in
@@ -102,3 +104,9 @@ https://github.com/WebDevSimplified/stripe-checkout-simple/blob/main/server/serv
 
 //handle errors
 https://stripe.com/docs/api/errors/handling
+
+
+
+//install node fetch:
+
+npm install node-fetch@2.6.6

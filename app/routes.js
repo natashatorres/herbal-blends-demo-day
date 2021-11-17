@@ -1,7 +1,8 @@
 // const { default: Stripe } = require("stripe");
+// require('dotenv').config()
 
-module.exports = function (app, passport, db, ObjectId, stripe) {
-  require('dotenv').config()
+module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
+
 
 
   // normal routes ===============================================================
@@ -22,7 +23,7 @@ module.exports = function (app, passport, db, ObjectId, stripe) {
     })
   })
 
-  app.get('/cart', (req, res) => {
+  app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray((err, result) => {
 
       if (err) return console.log(err)
@@ -38,7 +39,8 @@ module.exports = function (app, passport, db, ObjectId, stripe) {
   //stripe confirmation pages
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
-      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} Amount Charged: ${item.price}.00`) + "If you have any questions, contact us at herbal-blends@gmail.com."
+      const total = result.reduce((a,b) => {a.price + b.price})
+      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} Amount Charged: ${item.price}.00`) + `Total: ${total}` + "If you have any questions, contact us at herbal-blends@gmail.com."
       sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
       res.render('success.ejs');
     });
@@ -48,6 +50,20 @@ module.exports = function (app, passport, db, ObjectId, stripe) {
     res.render('cancel.ejs');
   });
 
+  // PLANT SECTION ==================================
+  app.get('/plant', function (req, res) {
+    const plantName = req.query.plantname
+    fetch(`https://en.wikipedia.org/w/api.php?action=parse&page=${plantName}&prop=text&section=0&format=json`)
+      .then(response => {
+        if (response.ok) return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        res.render('plant.ejs', {
+          plantName, data
+        });
+      })
+  });
 
 
 
@@ -70,7 +86,7 @@ module.exports = function (app, passport, db, ObjectId, stripe) {
 
   // cart routes ===============================================================
 
-  app.post('/cart', (req, res) => {
+  app.post('/cart', isLoggedIn, (req, res) => {
     //created a new document that went into messages collection
     console.log(req.body)
     db.collection('cart').insertOne({
@@ -253,8 +269,12 @@ module.exports = function (app, passport, db, ObjectId, stripe) {
 
 // route middleware to ensure user is logged in
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()) {
+    console.log("isAuthenticated true")
     return next();
+  }
+  console.log("isAuthenticated false")
 
-  res.redirect('/');
+  res.redirect('/login');
 }
+

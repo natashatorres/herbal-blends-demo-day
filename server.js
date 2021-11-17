@@ -1,10 +1,12 @@
 // server.js
+require('dotenv').config()
+
 
 // set up ======================================================================
 // get all the tools we need
-var express  = require('express');
-var app      = express();
-var port     = process.env.PORT || 3000;
+const express  = require('express');
+const app      = express();
+const port     = process.env.PORT || 3000;
 
 //goes into making a https:
 const https  = require('https')
@@ -19,36 +21,37 @@ const stripe = require('stripe')(
   process.env.STRIPE_SECRET_KEY
 )
 
-//email 
+//node fetch
+const fetch = require('node-fetch')
 
 
 const MongoClient = require('mongodb').MongoClient
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash    = require('connect-flash');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash    = require('connect-flash');
 
-var morgan       = require('morgan');
+const morgan       = require('morgan');
 //logs everything that happens on your server
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 //look at the cookies we store on comp keep track of who's logged in
-var bodyParser   = require('body-parser');
+const bodyParser   = require('body-parser');
 //we can see what's inside a request
-var session      = require('express-session');
+const session      = require('express-session');
 //keeps an open session/ users logged in
 
-var configDB = require('./config/database.js');
+const configDB = require('./config/database.js');
 //url for database, file is an object
 
 const ObjectId = require('mongodb').ObjectID
 
-var db
+let db
 
 
 // configuration ===============================================================
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId, stripe);
+  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch);
 }); // connect to our database
 
 
