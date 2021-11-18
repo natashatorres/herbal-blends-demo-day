@@ -62,13 +62,14 @@
     <section class="title">
       <h1>Choose one herb from each category:</h1>
     </section>
-    <section class="orderItems">
 
+    
+    <section class="orderItems">
       <ul class="herbs">
         <% for(var i=0; i<base.length; i++) {%>
           <li class="herb">
             <span class="herbName">
-              <%= base[i].name %>
+              <a href="/plant?plantname=<%= base[i].name %>"><%= base[i].name %></a>
             </span>
             <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
 
@@ -92,14 +93,14 @@
           <% } %>
       </ul>
     </section>
-
+   
 
     <section class="orderItems">
       <ul class="herbs">
         <% for(var i=0; i<flavor.length; i++) {%>
           <li class="herb">
             <span class="herbName">
-              <%= flavor[i].name %>
+              <a href="/plant?plantname=<%= flavor[i].name %>"><%= flavor[i].name %></a>
             </span>
             <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
 
@@ -131,7 +132,7 @@
         <% for(var i=0; i<support.length; i++) {%>
           <li class="herb">
             <span class="herbName">
-              <%= support[i].name %>
+              <a href="/plant?plantname=<%= support[i].name %>"><%= support[i].name %></a>
             </span>
             <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
 
@@ -162,7 +163,7 @@
   </form>
 
 
-  <footer class="text-center text-white shadow  rounded" style="background-color: #f1f1f1;">
+  <footer id="footermain" class="text-center text-white" style="background-color: #f1f1f1;">
     <!-- Grid container -->
     <div class="container pt-4">
       <!-- Section: Social media -->
@@ -190,7 +191,7 @@
 
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color:  #f1f1f1;">
-      © 2020 Copyright;
+      © 2020 
     </div>
   </footer>
 

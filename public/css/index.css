@@ -121,3 +121,18 @@ form{
   margin-bottom: 2em;
 }
 
+#footermain {
+  background: grey;
+  width: 100%;
+  -moz-box-shadow: 0 -5px 8px grey;
+  -webkit-box-shadow: 0 -5px 8px grey;
+  box-shadow: 0 -2px 8px grey;
+  position: relative;
+}
+
+#footerinner {
+  height: 150px;
+  width: 960px;
+  position: relative;
+  margin: 0 auto;
+}

@@ -39,8 +39,10 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   //stripe confirmation pages
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
-      const total = result.reduce((a,b) => {a.price + b.price})
-      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} Amount Charged: ${item.price}.00`) + `Total: ${total}` + "If you have any questions, contact us at herbal-blends@gmail.com."
+      console.log(result)
+      const total = result.reduce((a,b) => a.price + b.price)
+      console.log(total)
+      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + `Total: ${total}` + "If you have any questions, contact us at herbal-blends@gmail.com."
       sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
       res.render('success.ejs');
     });
@@ -66,7 +68,19 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   });
 
 
+// IDENTIFY PLANT ==============================
 
+app.get('/identify', function (req, res) {
+  res.render('identify.ejs');
+});
+
+app.get('/handlePlantsId', function (req, res) {
+  let plantName = req.query.plant
+  console.log(plantName)
+  //scientific names
+  //find text in an array create a filter for scientifc name 
+  res.render('handlePlantsId.ejs');
+});
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
     db.collection('messages').find().toArray((err, result) => {

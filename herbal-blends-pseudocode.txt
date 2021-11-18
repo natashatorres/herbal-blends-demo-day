@@ -110,3 +110,8 @@ https://stripe.com/docs/api/errors/handling
 //install node fetch:
 
 npm install node-fetch@2.6.6
+
+
+
+//camera use
+https://usefulangle.com/post/352/javascript-capture-image-from-camera
