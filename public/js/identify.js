@@ -7,7 +7,7 @@ let canvas = document.querySelector("#canvas");
 camera_button.addEventListener('click', async function () {
     let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
     video.srcObject = stream;
-  
+
 });
 
 click_button.addEventListener('click', function () {
@@ -21,7 +21,7 @@ click_button.addEventListener('click', function () {
             let base64data = reader.result;
             console.log(base64data);
             const data = {
-                api_key: "pcyJyiOfcEr5FCQWpqJL9eHrnMEbSquXTrUGwSpp9iYc9xV65o",
+                api_key: "API_KEY",
                 images: [base64data],
                 modifiers: ["crops_fast", "similar_images"],
                 plant_language: "en",
@@ -43,15 +43,34 @@ click_button.addEventListener('click', function () {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    //query string name = plant value = data (req.query.plant)
-                    let plantIdUrl = `/handlePlantsId?plant=${data.suggestions[0].plant_name}`
-                    console.log(plantIdUrl)
-                    window.location.href = plantIdUrl;
+                    //query string name = plant value = data (req.quer)
+                    document.querySelector('#name').innerText = `Name: ${data.suggestions[0].plant_name}`
+                    console.log(data.suggestions[0])
+                    document.querySelector('#plantDescription').innerText = `Description: ${data.suggestions[0].plant_details.wiki_description.value}`
+                    console.log(data.suggestions[0].plant_details)
+                    document.querySelector('#plantImg').src = data.suggestions[0].similar_images[0].url
+
+                    let plantName = data.suggestions[0].plant_name
+
+                    fetch(`/findPlant/${plantName}`)
+
+                        .then(response => response.json())
+                        .then(plant => {
+                            let plantUrl = `/plant?plantname=${plant.name}`
+                                console.log('plantResult:', plant, plantUrl);
+                            window.location.href = plantUrl
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    //request 
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                 });
         }
+
+
 
     });
 
@@ -75,4 +94,3 @@ document.querySelector('button').onclick = function sendIdentification() {
         })
     })
 }
-   

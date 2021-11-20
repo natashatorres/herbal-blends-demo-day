@@ -44,7 +44,7 @@ h3{
   display: block;
   align-items: center;
   text-align: center;
-  width: 40em;
+  width: 60em;
   border: 1px solid rgb(224 235 207);
   margin: 0 auto;
   margin-top: 2em;
@@ -63,4 +63,11 @@ h3{
   display:none;
 }
 
-
+.btn{
+  background-color:rgb(224 235 207);
+  height:4em;
+  width: 20em;
+  border:none;
+  text-transform: uppercase;
+  
+}

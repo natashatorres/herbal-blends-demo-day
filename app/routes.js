@@ -7,8 +7,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   // normal routes ===============================================================
 
-
-  // show the home page (will also have our login links)
+  // home page ===================================================================
   app.get('/', (req, res) => {
 
     db.collection('herbs').find().toArray((err, result) => {
@@ -23,6 +22,12 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     })
   })
 
+  // about ===============================================================
+  app.get('/about', function (req, res) {
+   
+    res.render('about.ejs');
+  });
+  
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray((err, result) => {
 
@@ -42,7 +47,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       console.log(result)
       const total = result.reduce((a,b) => a.price + b.price)
       console.log(total)
-      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + `Total: ${total}` + "If you have any questions, contact us at herbal-blends@gmail.com."
+      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
       sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
       res.render('success.ejs');
     });
@@ -71,16 +76,30 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 // IDENTIFY PLANT ==============================
 
 app.get('/identify', function (req, res) {
+
   res.render('identify.ejs');
 });
-
-app.get('/handlePlantsId', function (req, res) {
-  let plantName = req.query.plant
-  console.log(plantName)
-  //scientific names
-  //find text in an array create a filter for scientifc name 
-  res.render('handlePlantsId.ejs');
+//pure api looks through data base 
+app.get('/findPlant/:scientificName', function (req, res) {
+  let scientificName = req.params.scientificName
+  console.log(scientificName)
+  db.collection('herbs').findOne({alternateNames : {$in : [scientificName]}},(err, result) => {
+    if (err) return console.log(err)
+    console.log(result)
+    res.send(result)
+  })
 });
+
+
+// app.get('/handlePlantsId', function (req, res) {
+//   let plantName = req.query.plant
+
+//   console.log(plantName)
+//   //scientific names
+//   //find text in an array create a filter for scientifc name 
+//   res.render('handlePlantsId.ejs', {plantName, data});
+// });
+
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
     db.collection('messages').find().toArray((err, result) => {
@@ -181,7 +200,7 @@ app.get('/handlePlantsId', function (req, res) {
   })
 
 
-  //email
+  //CONFIRMATION EMAIL =============================
 
   const nodemailer = require("nodemailer");
   const { google } = require("googleapis");

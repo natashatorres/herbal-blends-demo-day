@@ -1,10 +1,12 @@
+*{
+  box-sizing: border-box;
+}
+
 body{
   margin: 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
   font-size: 15px;
 }
-
 
 nav{
   background-color: rgb(241 242 242);
@@ -19,11 +21,6 @@ width: 15em;
   width: 10px;
 }
 
-.title{
-  display: block;
-  align-items: center;
-  text-align: center;
-}
 h1{
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 100;
@@ -41,18 +38,17 @@ form{
 }
 .signinContainer{
   width: auto;
-  margin: 0 auto;
-  display: flex;
+  display: inline-block;
   align-items: center;
   justify-content: center;
 }
 
 .herbs{
-  list-style: none;
+  list-style-type: none;
 }
 
 .orderItems{
-  display: block;
+  display: float;
   align-items: center;
   text-align: center;
   width: 40em;
@@ -67,38 +63,53 @@ form{
   align-items: center;
   text-align: center;
   margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.herbName a{
+color: rgb(224 235 207);
+font-size: 2em;
+text-decoration: none;
+}
+
+.herbName a:hover{
+  color:black;
 }
 
 .herbName{
+  color: rgb(224 235 207);
+  font-family: 'Cedarville Cursive', Arial, Helvetica, sans-serif;
   display:inline-block;
+  text-decoration: none;
   text-align: center;
+}
+
+.support{
+  width: 13em;
+  padding: 0 2em;
 }
 
 .herbProp{
   padding: 1em 1em;
-  text-decoration: underline;
   display: block;
   align-items: center;
-
 }
 
 .herbPos{
   display: block;
   align-items: center;
+  text-transform: uppercase;
   color:rgb(224 235 207);
   padding: 1em 1em;
-
-
 }
 
 .submitOrder{
   background-color:rgb(224 235 207);
+  color:white;
   height:4em;
   width: 20em;
   border:none;
   text-transform: uppercase;
-  
-
 }
 
 .hide{
@@ -135,4 +146,21 @@ form{
   width: 960px;
   position: relative;
   margin: 0 auto;
+}
+
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  outline: 2px solid rgb(224 235 207)
 }

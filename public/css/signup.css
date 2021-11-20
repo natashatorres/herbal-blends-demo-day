@@ -20,7 +20,7 @@ nav{
 }
 
 .btn-sm{
-  background-color: rgb(241 242 242);
+  background-color: rgb(241 242 242) !important;
 }
 
 #footermain {
