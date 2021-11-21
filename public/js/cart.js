@@ -1,6 +1,6 @@
 const checkout = document.querySelector('#checkout')
 const qty = document.getElementsByClassName("qty");
-const trash = document.getElementsByClassName("fa-trash");
+const trash = document.getElementsByClassName("fa-times");
 
 
 Array.from(qty).forEach(function(element) {

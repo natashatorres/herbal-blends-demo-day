@@ -4,14 +4,23 @@
 
 body{
   margin: 0;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 15px;
+  text-transform: uppercase;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(122 146 91);
 }
 
 nav{
   background-color: rgb(241 242 242);
+  margin-bottom: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
 }
-
 
 .logo{
 width: 15em;
@@ -59,7 +68,6 @@ form{
 }
 
 .button{
-  display: block;
   align-items: center;
   text-align: center;
   margin-bottom: 2em;
@@ -70,6 +78,7 @@ form{
 color: rgb(224 235 207);
 font-size: 2em;
 text-decoration: none;
+text-transform: none;
 }
 
 .herbName a:hover{
@@ -132,21 +141,6 @@ text-decoration: none;
   margin-bottom: 2em;
 }
 
-#footermain {
-  background: grey;
-  width: 100%;
-  -moz-box-shadow: 0 -5px 8px grey;
-  -webkit-box-shadow: 0 -5px 8px grey;
-  box-shadow: 0 -2px 8px grey;
-  position: relative;
-}
-
-#footerinner {
-  height: 150px;
-  width: 960px;
-  position: relative;
-  margin: 0 auto;
-}
 
 [type=radio] { 
   position: absolute;
@@ -164,3 +158,5 @@ text-decoration: none;
 [type=radio]:checked + img {
   outline: 2px solid rgb(224 235 207)
 }
+
+

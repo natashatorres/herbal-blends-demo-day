@@ -1,15 +1,26 @@
-body{
-  margin: 0;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  text-transform: uppercase;
-  font-size: 15px;
+*{
+  box-sizing: border-box;
 }
 
+body{
+  margin: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(122 146 91);
+}
 
 nav{
   background-color: rgb(241 242 242);
+  margin-bottom: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
 }
-
 
 .logo{
 width: 15em;
@@ -18,7 +29,6 @@ width: 15em;
 .navbar-toggler-icon{
   width: 10px;
 }
-
 h1{
   font-weight: 100;
   font-size: 2px;
@@ -29,34 +39,18 @@ h3{
   margin-top: 40px;
 }
 
-.herbs{
-  list-style: none;
+#qty{
+  border: 1px solid black;
+  padding: 0 10px;
 }
 
-.confirm{
-  display: block;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 2em;
-}
-
-.order{
-  display: block;
-  align-items: center;
-  text-align: center;
-  width: 60em;
-  border: 1px solid rgb(224 235 207);
-  margin: 0 auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-
-
-.button{
-  display: block;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 2em;
+#checkout{
+  background-color:rgb(224 235 207);
+  color:white;
+  height:4em;
+  width: 20em;
+  border:none;
+  text-transform: uppercase;
 }
 
 .hide{
