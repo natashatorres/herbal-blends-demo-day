@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  
+  a{
+    text-decoration: none;
+    color: rgb(122 146 91);
+  }
+  
+  nav{
+    background-color: rgb(241 242 242);
+    margin-bottom: 0;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+  
+  .logo{
+  width: 15em;
+  }
+  
+  .navbar-toggler-icon{
+    width: 10px;
+  }
+
+  footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+  }

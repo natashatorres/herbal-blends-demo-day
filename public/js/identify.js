@@ -21,7 +21,7 @@ click_button.addEventListener('click', function () {
             let base64data = reader.result;
             console.log(base64data);
             const data = {
-                api_key: "API_KEY",
+                api_key: "pcyJyiOfcEr5FCQWpqJL9eHrnMEbSquXTrUGwSpp9iYc9xV65o",
                 images: [base64data],
                 modifiers: ["crops_fast", "similar_images"],
                 plant_language: "en",
@@ -50,7 +50,7 @@ click_button.addEventListener('click', function () {
                     console.log(data.suggestions[0].plant_details)
                     document.querySelector('#plantImg').src = data.suggestions[0].similar_images[0].url
 
-                    let plantName = data.suggestions[0].plant_name
+                    let plantName = data.suggestions[0].plant_name.toLowerCase()
 
                     fetch(`/findPlant/${plantName}`)
 
@@ -58,7 +58,15 @@ click_button.addEventListener('click', function () {
                         .then(plant => {
                             let plantUrl = `/plant?plantname=${plant.name}`
                                 console.log('plantResult:', plant, plantUrl);
-                            window.location.href = plantUrl
+                            let button = document.createElement('a')
+                            button.href = "/"
+                            let buttonText = document.createTextNode('Order Now')
+                            let text = document.createTextNode(`We have ${plantName} in stock!`)
+                            let element = document.getElementById('inStock')
+                            button.appendChild(buttonText)
+                            element.appendChild(text)
+                            element.appendChild(button)
+
                         })
                         .catch((error) => {
                             console.error('Error:', error);
@@ -69,9 +77,6 @@ click_button.addEventListener('click', function () {
                     console.error('Error:', error);
                 });
         }
-
-
-
     });
 
     // data url of the image

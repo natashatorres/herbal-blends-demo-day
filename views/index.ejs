@@ -47,14 +47,14 @@
       </div>
     </nav>
   </header>
-  
+ 
   <form action="/cart" method="POST">
 
     <!-- base herbs -->
     <div class="row justify-content-center mt-3">
       <% for(var i=0; i<base.length; i++) {%>
-        <div class="col-sm-3 ml-5">
-          <div class="card text-center mx-5" style="width: 18rem;height:25rem;">
+        <div class="col-sm-3">
+          <div class="card text-center" style="width: 18rem;height:25rem;">
             <label>
               <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
               <img src="img/rasberryleaf.png" class="base" alt="an image of dried herbs" width="220px">
@@ -80,8 +80,8 @@
     <!-- flavor herbs -->
     <div class="row justify-content-center mt-3">
       <% for(var i=0; i<flavor.length; i++) {%>
-        <div class="col-sm-3 ml-5">
-          <div class="card text-center mx-5" style="width: 18rem;height:25rem;">
+        <div class="col-sm-3">
+          <div class="card text-center" style="width: 18rem;height:25rem;">
             <label>
               <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
               <img src="img/lemonbalm.jpeg" class="flavor" width="200px">
@@ -107,8 +107,8 @@
     <!-- support -->
     <div class="row justify-content-center mt-3">
       <% for(var i=0; i<base.length; i++) {%>
-        <div class="col-sm-3 ml-5">
-          <div class="card text-center mx-5" style="width: 18rem;height:25rem;">
+        <div class="col-sm-3">
+          <div class="card text-center" style="width: 18rem;height:25rem;">
             <label>
               <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
               <img src="img/skullCap.jpg" class="support">

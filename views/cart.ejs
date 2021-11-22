@@ -53,15 +53,16 @@
 
   
   <div class="confirm d-flex justify-content-center">
-  <h1>Confirm Your Order</h1>
   </div>
   
+  <div class="row d-flex justify-content-center">
+    <div class="col-xxl-6 col-md-1 my-5">
   <% for(var i=0; i<cart.length; i++) {%>
-  <div class="card text-center d-flex justify-content-center" style="width: 30rem;">
+  <div class="card my-2" style="width: 35rem;">
     <div class="card-body">
-      <span><%= cart[i].base %></span>
-      <span><%= cart[i].flavor %></span>
-      <span><%= cart[i].support %></span>
+      <span><%= cart[i].base %> </span>
+      <span><%= cart[i].flavor %> </span>
+      <span><%= cart[i].support %> </span>
       <span class="hide"><%= cart[i]._id %></span>
       <span><i class="fas fa-plus-square qty" aria-hidden="true"></i></span>
       <span id="qty"><%= cart[i].qty %></span>
@@ -70,10 +71,11 @@
     </div>
   </div>
   <% } %>
- 
+</div>
+</div>
 
 
-<section class="form-outline mb-4 d-flex justify-content-center">
+<section class="form-outline mb-4 mt-5 d-flex justify-content-center">
   <button type="submit" class="btn" id="checkout">Checkout</button>
 </section>
 

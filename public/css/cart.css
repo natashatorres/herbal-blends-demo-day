@@ -39,6 +39,16 @@ h3{
   margin-top: 40px;
 }
 
+.card-body .card {
+  display: block;
+}
+
+span{
+  padding: .5em;
+}
+
+
+
 #qty{
   border: 1px solid black;
   padding: 0 10px;
@@ -57,11 +67,9 @@ h3{
   display:none;
 }
 
-.btn{
-  background-color:rgb(224 235 207);
-  height:4em;
-  width: 20em;
-  border:none;
-  text-transform: uppercase;
-  
+footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
 }

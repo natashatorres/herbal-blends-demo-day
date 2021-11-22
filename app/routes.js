@@ -3,10 +3,6 @@
 
 module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
-
-
-  // normal routes ===============================================================
-
   // home page ===================================================================
   app.get('/', (req, res) => {
 
@@ -52,6 +48,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       res.render('success.ejs');
     });
   });
+
   app.get('/cancel', function (req, res) {
     req.logout();
     res.render('cancel.ejs');
@@ -71,7 +68,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
         });
       })
   });
-
 
 // IDENTIFY PLANT ==============================
 
@@ -154,8 +150,6 @@ app.get('/findPlant/:scientificName', function (req, res) {
       })
   })
 
-
-
   app.delete('/cart', (req, res) => {
     console.log(req.body.id, req.body.id === "616e19334e665fc02b002cbc", typeof req.body.id)
     db.collection('cart').findOneAndDelete({
@@ -165,9 +159,8 @@ app.get('/findPlant/:scientificName', function (req, res) {
       res.send('Message deleted!')
     })
   })
+
   // checkout board routes ===============================================================
-
-
   app.post('/create-checkout-session', async (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
 
@@ -203,7 +196,7 @@ app.get('/findPlant/:scientificName', function (req, res) {
   //CONFIRMATION EMAIL =============================
 
   const nodemailer = require("nodemailer");
-  const { google } = require("googleapis");
+  const { google, containeranalysis_v1alpha1 } = require("googleapis");
   const OAuth2 = google.auth.OAuth2;
   const oauth2Client = new OAuth2(
     "343026941432-iotq79r25quk8kfjbrghoqqr16rpmetr.apps.googleusercontent.com", //ClientID
@@ -216,15 +209,15 @@ app.get('/findPlant/:scientificName', function (req, res) {
       refresh_token: "1//04Uy2O8LXGdn1CgYIARAAGAQSNwF-L9Ir9LJSeXAHZ-ptnYWEfzpcNEMyPxJwrlbvp6EfhEF9YoTsPNR3KPe5zHnMY_POz2QHVcs"
     });
     const accessToken = oauth2Client.getAccessToken()
-
+    console.log(process.env.EMAIL, process.env.CLIENT_SECRET, process.env.REFRESH_TOKEN)
     const smtpTransport = nodemailer.createTransport({
       service: "gmail",
       auth: {
         type: "OAuth2",
-        user: "natashaxtorres@gmail.com",
+        user: process.env.EMAIL,
         clientId: "343026941432-iotq79r25quk8kfjbrghoqqr16rpmetr.apps.googleusercontent.com", //ClientID
-        clientSecret: "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",
-        refreshToken: "1//04Uy2O8LXGdn1CgYIARAAGAQSNwF-L9Ir9LJSeXAHZ-ptnYWEfzpcNEMyPxJwrlbvp6EfhEF9YoTsPNR3KPe5zHnMY_POz2QHVcs",
+        clientSecret: process.env.CLIENT_SECRET,
+        refreshToken: process.env.REFRESH_TOKEN,
         accessToken: accessToken
       },
       tls: {
@@ -233,7 +226,7 @@ app.get('/findPlant/:scientificName', function (req, res) {
     });
 
     const mailOptions = {
-      from: "natashaxtorres@gmail.com",
+      from: process.env.EMAIL,
       to: toEmail,
       subject: subject,
       generateTextFromHTML: true,
@@ -245,8 +238,6 @@ app.get('/findPlant/:scientificName', function (req, res) {
       smtpTransport.close();
     });
   }
-
-
 
   // =============================================================================
   // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -278,8 +269,6 @@ app.get('/findPlant/:scientificName', function (req, res) {
     failureRedirect: '/signup', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
-
-
 
   // =============================================================================
   // UNLINK ACCOUNTS =============================================================

@@ -1,23 +1,34 @@
 *{
-    box-sizing: border-box;
-  }
-  
-  body{
-    margin: 0;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    font-size: 15px;
-  }
-  
-  
-  nav{
-    background-color: rgb(241 242 242);
-  }
-  
-  
-  .logo{
-  width: 15em;
-  }
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(122 146 91);
+}
+
+nav{
+  background-color: rgb(241 242 242);
+  margin-bottom: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.logo{
+width: 15em;
+}
+
+.navbar-toggler-icon{
+  width: 10px;
+}
 
 section{
   
@@ -37,28 +48,17 @@ canvas{
     padding: 2em;
 }
 
+section{
+  display:inline-block;
+}
+
 .identifyBut{
-    background-color:rgb(224 235 207);
-    height:4em;
-    width: 20em;
-    border:none;
-    text-transform: uppercase;
-    display: block;
-    margin: 2em auto;
-    
-  }
-  #footermain {
-    background: grey;
-    width: 100%;
-    -moz-box-shadow: 0 -5px 8px grey;
-    -webkit-box-shadow: 0 -5px 8px grey;
-    box-shadow: 0 -2px 8px grey;
-    position: relative;
-  }
-  
-  #footerinner {
-    height: 150px;
-    width: 960px;
-    position: relative;
-    margin: 0 auto;
-  }
+  background-color:rgb(224 235 207);
+  color:white;
+  height:4em;
+  width: 20em;
+  border:none;
+  text-transform: uppercase;
+}
+
+ 
