@@ -206,7 +206,7 @@ app.get('/findPlant/:scientificName', function (req, res) {
 
   function sendMail(toEmail, subject, html) {
     oauth2Client.setCredentials({
-      refresh_token: "1//04Uy2O8LXGdn1CgYIARAAGAQSNwF-L9Ir9LJSeXAHZ-ptnYWEfzpcNEMyPxJwrlbvp6EfhEF9YoTsPNR3KPe5zHnMY_POz2QHVcs"
+      refresh_token: process.env.REFRESH_TOKEN
     });
     const accessToken = oauth2Client.getAccessToken()
     console.log(process.env.EMAIL, process.env.CLIENT_SECRET, process.env.REFRESH_TOKEN)
