@@ -182,7 +182,7 @@ app.get('/findPlant/:scientificName', function (req, res) {
               quantity: item.qty,
             }
           }),
-          success_url: `${process.env.SERVER_URL}/success`,
+          success_url: `${process.env.SERVER_URL}success`,
           cancel_url: `${process.env.SERVER_URL}/cancel`,
         })
         res.json({ url: session.url })
