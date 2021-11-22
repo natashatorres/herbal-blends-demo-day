@@ -10,10 +10,14 @@ const port     = process.env.PORT || 3000;
 //goes into making a https:
 const https  = require('https')
 const fs = require('fs')
-const privateKey  = fs.readFileSync('server.key', 'utf8');
-const certificate = fs.readFileSync('server.cert', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
-
+let privateKey  
+let certificate 
+let credentials 
+if(process.env.ENVIRONMENT !== "production"){
+  privateKey = fs.readFileSync('server.key', 'utf8');
+  certificate = fs.readFileSync('server.cert', 'utf8');
+  credentials= { key: privateKey, cert: certificate };
+}
 //stripe for payment
 require('dotenv').config()
 const stripe = require('stripe')(
@@ -80,6 +84,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // launch ======================================================================
 // app.listen(port); 
-const server = https.createServer(credentials, app);
-server.listen(port);
-console.log('The magic happens on port ' + port);
+if(process.env.ENVIRONMENT !== "production"){
+  const server = https.createServer(credentials, app);
+  server.listen(port);
+  console.log('The magic happens on port ' + port);
+}else{
+  app.listen(port);
+  console.log('The magic happens on port ' + port);
+}
