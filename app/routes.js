@@ -23,7 +23,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
    
     res.render('about.ejs');
   });
-  
+  // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray((err, result) => {
 
@@ -37,7 +37,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     res.render('confirmation.ejs');
   });
 
-  //stripe confirmation pages
+  //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
       console.log(result)

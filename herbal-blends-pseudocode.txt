@@ -45,11 +45,12 @@ component: Support
 
 // what I want it to do / how users will interact
 allow users to sign up and create an account/log-in
-a menu of herbs to choose from to create an herbal spliff/blend
-allow users to add multiple items to their spliff/blend
+a menu of herbs to choose from to create an herbal blend
+allow users to add multiple items to their blends
 a link that takes you to the herb page where they can add comments or star the herb
 allow users to rate the herbs/leave comments
 get a confirmation of their order
+recieve an email
 
 
 // properties to send to post method
@@ -102,15 +103,21 @@ https://stripe.com/docs/receipts
 https://www.youtube.com/watch?v=1r-F3FIONl8
 https://github.com/WebDevSimplified/stripe-checkout-simple/blob/main/server/server.js
 
+//nodemailer
+https://www.freecodecamp.org/news/use-nodemailer-to-send-emails-from-your-node-js-server/
+https://medium.com/@nickroach_50526/sending-emails-with-node-js-using-smtp-gmail-and-oauth2-316fe9c790a1
+https://nodemailer.com/usage/using-gmail/
+
 //handle errors
 https://stripe.com/docs/api/errors/handling
 
 
 
 //install node fetch:
-
 npm install node-fetch@2.6.6
 
+//how to use plantID api
+https://github.com/flowerchecker/Plant-id-API/blob/master/javascript/sync_identification_example.html
 
 
 //camera use
