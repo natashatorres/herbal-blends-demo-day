@@ -23,6 +23,18 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
     res.render('about.ejs');
   });
+
+  //store  ===============================================================
+  app.get('/store', function (req, res) {
+
+    res.render('store.ejs');
+  });
+
+  //customize  ===============================================================
+   app.get('/customize', function (req, res) {
+
+    res.render('customize.ejs');
+  });
   // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray((err, result) => {

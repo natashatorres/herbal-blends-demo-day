@@ -56,7 +56,7 @@ click_button.addEventListener('click', function () {
 
                         .then(response => response.json())
                         .then(plant => {
-                            let plantUrl = `/plant?plantname=${plant.name}`
+                            let plantUrl = `/plant?plantname=${plant.name}&plantid=${plant._id}`
                                 console.log('plantResult:', plant, plantUrl);
                             let button = document.createElement('a')
                             button.href = "/"
