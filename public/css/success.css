@@ -1,22 +1,55 @@
+*{
+  box-sizing: border-box;
+}
+
 body{
-    margin: 0;
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    font-size: 15px;
-  }
+  margin: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(122 146 91);
+}
+
+nav{
+  background-color: rgb(241 242 242);
+  margin-bottom: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+#confirmation{
+  margin-top: 5rem;
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+
+h1{
+  color: rgb(224 235 207);
+  font-family: 'Cedarville Cursive', Arial, Helvetica, sans-serif;
+  text-transform: none;
+}
+p{
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  text-transform: none;
+}
+
+.logo{
+width: 15em;
+}
+
+.navbar-toggler-icon{
+  width: 10px;
+}
   
-  nav{
-    background-color: rgb(241 242 242);
-  }
-  
-  .logo{
-    width: 15em;
-  }
-  
-  .title{
-    display: block;
-    align-items: center;
-    text-align: center;
-  }
-  
-  
+footer {
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}
