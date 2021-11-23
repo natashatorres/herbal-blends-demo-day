@@ -13,19 +13,19 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       const support = result.filter(h => h.component === "Support")
       const liked = result.filter(h => h.component === 0)
       res.render('index.ejs', {
-        base: base, flavor: flavor, support: support, liked: liked
+        base: base, flavor: flavor, support: support, liked: liked, user: req.user
       })
     })
   })
 
   // about ===============================================================
   app.get('/about', function (req, res) {
-   
+
     res.render('about.ejs');
   });
   // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
-    db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray((err, result) => {
+    db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray((err, result) => {
 
       if (err) return console.log(err)
       res.render('cart.ejs', { cart: result })
@@ -39,13 +39,17 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
-    db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
-      console.log(result)
-      const total = result.reduce((a,b) => a.price + b.price)
-      console.log(total)
-      let html = "Reciept from Herbal Blends " + result.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
-      sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
-      res.render('success.ejs');
+    db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray(async (err, cartItems) => {
+      db.collection('cart').updateMany({ userId: ObjectId(req.user._id) }, {
+        $set: { completed: true }
+      }, async (err, updateResult) => {
+        console.log("result here", cartItems)
+        const total = cartItems.reduce((a, b) => a.price + b.price)
+        console.log(total)
+        let html = "Reciept from Herbal Blends " + cartItems.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
+        sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
+        res.render('success.ejs');
+      });
     });
   });
 
@@ -69,32 +73,32 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       })
   });
 
-// IDENTIFY PLANT ==============================
+  // IDENTIFY PLANT ==============================
 
-app.get('/identify', function (req, res) {
+  app.get('/identify', function (req, res) {
 
-  res.render('identify.ejs');
-});
-//pure api looks through data base 
-app.get('/findPlant/:scientificName', function (req, res) {
-  let scientificName = req.params.scientificName
-  console.log(scientificName)
-  db.collection('herbs').findOne({alternateNames : {$in : [scientificName]}},(err, result) => {
-    if (err) return console.log(err)
-    console.log(result)
-    res.send(result)
-  })
-});
+    res.render('identify.ejs');
+  });
+  //pure api looks through data base 
+  app.get('/findPlant/:scientificName', function (req, res) {
+    let scientificName = req.params.scientificName
+    console.log(scientificName)
+    db.collection('herbs').findOne({ alternateNames: { $in: [scientificName] } }, (err, result) => {
+      if (err) return console.log(err)
+      console.log(result)
+      res.send(result)
+    })
+  });
 
 
-// app.get('/handlePlantsId', function (req, res) {
-//   let plantName = req.query.plant
+  // app.get('/handlePlantsId', function (req, res) {
+  //   let plantName = req.query.plant
 
-//   console.log(plantName)
-//   //scientific names
-//   //find text in an array create a filter for scientifc name 
-//   res.render('handlePlantsId.ejs', {plantName, data});
-// });
+  //   console.log(plantName)
+  //   //scientific names
+  //   //find text in an array create a filter for scientifc name 
+  //   res.render('handlePlantsId.ejs', {plantName, data});
+  // });
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
@@ -125,7 +129,8 @@ app.get('/findPlant/:scientificName', function (req, res) {
       support: req.body.support,
       price: 10,
       qty: 1,
-      userId: req.user._id
+      userId: req.user._id,
+      completed: false
     }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
@@ -162,7 +167,7 @@ app.get('/findPlant/:scientificName', function (req, res) {
 
   // checkout board routes ===============================================================
   app.post('/create-checkout-session', async (req, res) => {
-    db.collection('cart').find({ userId: ObjectId(req.user._id) }).toArray(async (err, result) => {
+    db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false}).toArray(async (err, result) => {
 
       try {
         const session = await stripe.checkout.sessions.create({
@@ -182,11 +187,12 @@ app.get('/findPlant/:scientificName', function (req, res) {
               quantity: item.qty,
             }
           }),
-          success_url: `${process.env.SERVER_URL}success`,
+          success_url: `${process.env.SERVER_URL}/success`,
           cancel_url: `${process.env.SERVER_URL}/cancel`,
         })
         res.json({ url: session.url })
-      } catch (e) {
+      } catch (e) { 
+        console.log(e)
         res.status(500).json({ error: e.message })
       }
     })
