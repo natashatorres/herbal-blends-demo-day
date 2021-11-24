@@ -5,7 +5,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   // home page ===================================================================
   app.get('/', (req, res) => {
-    
+
     res.render('index.ejs');
   })
 
@@ -204,7 +204,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
               quantity: item.qty,
             }
           }),
-          success_url: `${process.env.SERVER_URL}/success`,
+          success_url: `${process.env.SERVER_URL}success`,
           cancel_url: `${process.env.SERVER_URL}/cancel`,
         })
         res.json({ url: session.url })
