@@ -59,7 +59,7 @@ click_button.addEventListener('click', function () {
                             let plantUrl = `/plant?plantname=${plant.name}&plantid=${plant._id}`
                                 console.log('plantResult:', plant, plantUrl);
                             let button = document.createElement('a')
-                            button.href = "/"
+                            button.href = "/store"
                             let buttonText = document.createTextNode('Order Now')
                             let text = document.createTextNode(`We have ${plantName} in stock!`)
                             let element = document.getElementById('inStock')
