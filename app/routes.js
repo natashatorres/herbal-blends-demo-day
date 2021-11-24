@@ -204,12 +204,12 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
               quantity: item.qty,
             }
           }),
-          success_url: `${process.env.SERVER_URL}success`,
+          success_url: `${process.env.SERVER_URL}/success`,
           cancel_url: `${process.env.SERVER_URL}/cancel`,
         })
         res.json({ url: session.url })
       } catch (e) { 
-        console.log(e)
+        console.log(e) 
         res.status(500).json({ error: e.message })
       }
     })
