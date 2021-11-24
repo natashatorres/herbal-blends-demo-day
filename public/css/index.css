@@ -113,12 +113,15 @@ text-transform: none;
 }
 
 .submitOrder{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   background-color:rgb(224 235 207);
   color:white;
   height:4em;
   width: 20em;
   border:none;
   text-transform: uppercase;
+  margin-left: .5em;
+  margin-bottom: .5em;
 }
 
 .hide{

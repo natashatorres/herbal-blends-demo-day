@@ -6,16 +6,21 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   // home page ===================================================================
   app.get('/', (req, res) => {
 
-    db.collection('herbs').find().toArray((err, result) => {
-      if (err) return console.log(err)
-      const base = result.filter(h => h.component === "Base")
-      const flavor = result.filter(h => h.component === "Flavor")
-      const support = result.filter(h => h.component === "Support")
-      const liked = result.filter(h => h.component === 0)
-      res.render('index.ejs', {
-        base: base, flavor: flavor, support: support, liked: liked, user: req.user
-      })
-    })
+    // db.collection('herbs').find().toArray((err, result) => {
+    //   if (err) return console.log(err)
+    //   const base = result.filter(h => h.component === "Base")
+    //   const flavor = result.filter(h => h.component === "Flavor")
+    //   const support = result.filter(h => h.component === "Support")
+    //   const liked = result.filter(h => h.component === 0)
+    //   res.render('index.ejs', {
+    //     base: base, 
+    //     flavor: flavor, 
+    //     support: support, 
+    //     liked: liked, 
+    //     user: req.user
+    //   })
+    // })
+    res.render('/');
   })
 
   // about ===============================================================
@@ -32,9 +37,22 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   //customize  ===============================================================
    app.get('/customize', function (req, res) {
-
-    res.render('customize.ejs');
+    db.collection('herbs').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      const base = result.filter(h => h.component === "Base")
+      const flavor = result.filter(h => h.component === "Flavor")
+      const support = result.filter(h => h.component === "Support")
+      const liked = result.filter(h => h.component === 0)
+      res.render('customize.ejs', {
+        base: base, 
+        flavor: flavor, 
+        support: support, 
+        liked: liked, 
+        user: req.user
+      })
+    })
   });
+
   // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray((err, result) => {
@@ -48,6 +66,54 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     req.logout();
     res.render('confirmation.ejs');
   });
+
+   // cart routes ===============================================================
+
+   app.post('/cart', isLoggedIn, (req, res) => {
+    //created a new document that went into messages collection
+    console.log(req.body)
+    db.collection('cart').insertOne({
+      _id: req.body.id,
+      base: req.body.base,
+      flavor: req.body.flavor,
+      support: req.body.support,
+      price: 10,
+      qty: 1,
+      userId: req.user._id,
+      completed: false
+    }, (err, result) => {
+      if (err) return console.log(err)
+      console.log('saved to database')
+      res.redirect('/cart') /// create a get cart page
+    })
+  })
+
+  app.put('/cart', (req, res) => {
+    db.collection('cart')
+      .findOneAndUpdate({
+        _id: ObjectId(req.body.id),
+      }, {
+        $inc: {
+          qty: req.body.qty
+        }
+      }, {
+        sort: { _id: -1 },
+        upsert: false
+      }, (err, result) => {
+        if (err) return res.send(err)
+        res.send(result)
+      })
+  })
+
+  app.delete('/cart', (req, res) => {
+    console.log(req.body.id, req.body.id === "616e19334e665fc02b002cbc", typeof req.body.id)
+    db.collection('cart').findOneAndDelete({
+      _id: ObjectId(req.body.id)
+    }, (err, result) => {
+      if (err) return res.send(500, err)
+      res.send('Message deleted!')
+    })
+  })
 
   //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
@@ -129,53 +195,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     res.redirect('/');
   });
 
-  // cart routes ===============================================================
-
-  app.post('/cart', isLoggedIn, (req, res) => {
-    //created a new document that went into messages collection
-    console.log(req.body)
-    db.collection('cart').insertOne({
-      _id: req.body.id,
-      base: req.body.base,
-      flavor: req.body.flavor,
-      support: req.body.support,
-      price: 10,
-      qty: 1,
-      userId: req.user._id,
-      completed: false
-    }, (err, result) => {
-      if (err) return console.log(err)
-      console.log('saved to database')
-      res.redirect('/cart') /// create a get cart page
-    })
-  })
-
-  app.put('/cart', (req, res) => {
-    db.collection('cart')
-      .findOneAndUpdate({
-        _id: ObjectId(req.body.id),
-      }, {
-        $inc: {
-          qty: req.body.qty
-        }
-      }, {
-        sort: { _id: -1 },
-        upsert: false
-      }, (err, result) => {
-        if (err) return res.send(err)
-        res.send(result)
-      })
-  })
-
-  app.delete('/cart', (req, res) => {
-    console.log(req.body.id, req.body.id === "616e19334e665fc02b002cbc", typeof req.body.id)
-    db.collection('cart').findOneAndDelete({
-      _id: ObjectId(req.body.id)
-    }, (err, result) => {
-      if (err) return res.send(500, err)
-      res.send('Message deleted!')
-    })
-  })
 
   // checkout board routes ===============================================================
   app.post('/create-checkout-session', async (req, res) => {
