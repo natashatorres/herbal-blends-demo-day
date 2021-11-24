@@ -5,22 +5,8 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   // home page ===================================================================
   app.get('/', (req, res) => {
-
-    // db.collection('herbs').find().toArray((err, result) => {
-    //   if (err) return console.log(err)
-    //   const base = result.filter(h => h.component === "Base")
-    //   const flavor = result.filter(h => h.component === "Flavor")
-    //   const support = result.filter(h => h.component === "Support")
-    //   const liked = result.filter(h => h.component === 0)
-    //   res.render('index.ejs', {
-    //     base: base, 
-    //     flavor: flavor, 
-    //     support: support, 
-    //     liked: liked, 
-    //     user: req.user
-    //   })
-    // })
-    res.render('/');
+    
+    res.render('index.ejs');
   })
 
   // about ===============================================================
