@@ -18,8 +18,24 @@ if(process.env.ENVIRONMENT !== "production"){
   certificate = fs.readFileSync('server.cert', 'utf8');
   credentials= { key: privateKey, cert: certificate };
 }
-//stripe for payment
 require('dotenv').config()
+
+//multer
+const multer  = require('multer')
+
+const upload = multer({
+  storage: multer.diskStorage({}),
+  fileFilter: (req, file, cb) => {
+    let ext = path.extname(file.originalname);
+    if (ext !== '.jpg' && ext !== '.jpeg' && ext !== '.png') {
+      cb(new Error('File type is not supported'), false);
+      return;
+    }
+    cb(null, true);
+  },
+});
+
+//stripe for payment
 const stripe = require('stripe')(
   process.env.STRIPE_SECRET_KEY
 )
@@ -54,7 +70,7 @@ let db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch);
+  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch, multer);
 }); // connect to our database
 
 

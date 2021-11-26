@@ -1,23 +1,34 @@
 // const { default: Stripe } = require("stripe");
 // require('dotenv').config()
 
-module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
+module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer) {
+  
+  //MULTER =======================================================================
+  let storage = multer.diskStorage({
+   
+    destination: (req, file, cb) => {
+      console.log(req)
+      cb(null, 'public/images/uploads')
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now() + ".png")
+    }
+  });
+  let upload = multer({storage: storage}); 
+
 
   // home page ===================================================================
   app.get('/', (req, res) => {
-
     res.render('index.ejs');
   })
 
   // about ===============================================================
   app.get('/about', function (req, res) {
-
     res.render('about.ejs');
   });
 
   //store  ===============================================================
   app.get('/store', function (req, res) {
-
     res.render('store.ejs');
   });
 
@@ -176,7 +187,33 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     })
   });
 
+  //MULTER ==========================================
+  app.post('/imageUpload', upload.single('image'), (req, res, next) => {
+    console.log('starting image upload')
+    var obj = {
+      name: req.body.name,
+      desc: req.body.desc,
+      img: {
+        data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
+        contentType: 'image/png'
+      }
+    }
+    console.log(obj)
+    userSchema.findOneAndUpdate({
+      _id: req.user._id,
+    },
+      obj, (err, item) => {
+      if (err) {
+          console.log(err);
+      }
+      else {
+          console.log('Saved image to database')
+          res.redirect('/profile');
+      }
+  });
 
+});
+ 
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
