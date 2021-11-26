@@ -103,10 +103,11 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
-    db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray(async (err, cartItems) => {
+    db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false}).toArray(async (err, cartItems) => {
       db.collection('cart').updateMany({ userId: ObjectId(req.user._id) }, {
-        $set: { completed: true }
-      }, async (err, updateResult) => {
+        $set: { completed: true, orderDate: new Date()}
+      },
+      async (err, updateResult) => {
         console.log("result here", cartItems)
         const total = cartItems.reduce((a, b) => a.price + b.price)
         console.log(total)
@@ -166,14 +167,16 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
-    db.collection('messages').find().toArray((err, result) => {
+    db.collection('cart').find({userId: req.user._id, completed: true}).toArray((err, result) => {
       if (err) return console.log(err)
       res.render('profile.ejs', {
         user: req.user,
-        messages: result
+        cart: result,
       })
     })
   });
+
+
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
