@@ -175,10 +175,6 @@
           <h4 class="fst-italic">Profile</h4>
         
           <form action="/imageUpload" method="POST" enctype="multipart/form-data">
-            <% if(user.img.data){ %>
-              <img src="data:image/<%=user.img.contentType%>;base64,
-              <%=user.img.data.toString('base64')%>" class="profileImg">
-            <% } %>
                 
           <div class="uploadImg">
             <input type="file" id="image" name="image" value="" class="profilePic" required>

@@ -10,7 +10,7 @@ const port     = process.env.PORT || 3000;
 //goes into making a https:
 const https  = require('https')
 const fs = require('fs')
-let privateKey  
+let privateKey 
 let certificate 
 let credentials 
 if(process.env.ENVIRONMENT !== "production"){
@@ -20,20 +20,6 @@ if(process.env.ENVIRONMENT !== "production"){
 }
 require('dotenv').config()
 
-//multer
-const multer  = require('multer')
-
-const upload = multer({
-  storage: multer.diskStorage({}),
-  fileFilter: (req, file, cb) => {
-    let ext = path.extname(file.originalname);
-    if (ext !== '.jpg' && ext !== '.jpeg' && ext !== '.png') {
-      cb(new Error('File type is not supported'), false);
-      return;
-    }
-    cb(null, true);
-  },
-});
 
 //stripe for payment
 const stripe = require('stripe')(
@@ -42,6 +28,9 @@ const stripe = require('stripe')(
 
 //node fetch
 const fetch = require('node-fetch')
+
+// multer
+
 
 
 const MongoClient = require('mongodb').MongoClient
@@ -70,7 +59,7 @@ let db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch, multer);
+  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch);
 }); // connect to our database
 
 

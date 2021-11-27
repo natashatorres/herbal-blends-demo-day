@@ -26,6 +26,10 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
+    },
+    img:            {
+        data: Buffer,
+        contentType: String
     }
 
 });
