@@ -70,6 +70,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
     console.log(req.body)
     db.collection('cart').insertOne({
       _id: req.body.id,
+      name: req.body.name,
       base: req.body.base,
       flavor: req.body.flavor,
       support: req.body.support,
@@ -81,6 +82,25 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       if (err) return console.log(err)
       console.log('saved to database')
       res.redirect('/cart') /// create a get cart page
+    })
+  })
+  
+  app.post('/allHerbsCart', isLoggedIn, (req, res) => {
+    //created a new document that went into messages collection
+    console.log(req.body)
+    db.collection('cart').insertOne({
+      _id: req.body.id,
+      base: req.body.base,
+      flavor: req.body.flavor,
+      support: req.body.support,
+      price: 10,
+      qty: 1,
+      userId: req.user._id,
+      completed: false
+    }, (err, result) => {
+      if (err) return console.log(err)
+      console.log('saved to database')
+      res.redirect('/store') /// create a get cart page
     })
   })
 
@@ -114,7 +134,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray(async (err, cartItems) => {
-      db.collection('cart').updateMany({ userId: ObjectId(req.user._id) }, {
+      db.collection('cart').updateMany( { $and: [ { userId: ObjectId(req.user._id)}, { completed: false} ] }, {
         $set: { completed: true, orderDate: new Date() }
       },
         async (err, updateResult) => {
@@ -179,9 +199,31 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   app.get('/profile', isLoggedIn, function (req, res) {
     db.collection('cart').find({ userId: req.user._id, completed: true }).toArray((err, result) => {
       if (err) return console.log(err)
+      
+      const groups = result.reduce((groups, order) => {
+        console.log(order)
+        const date = order.orderDate.toString().split('T')[0];
+        if (!groups[date]) {
+          groups[date] = [];
+        }
+        groups[date].push(order);
+        return groups;
+      }, {});
+
+      const groupArrays = Object.keys(groups).map((date) => {
+        return {
+          date,
+          orders: groups[date],
+          priceTotal: groups[date].reduce((acc, order) => acc += order.price, 0),
+          qty: groups[date].length
+        };
+      });
+
+      console.log(groups, groupArrays)
+
       res.render('profile.ejs', {
         user: req.user,
-        cart: result,
+        pastOrders: groupArrays,
       })
     })
   });
@@ -209,7 +251,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
               price_data: {
                 currency: 'usd',
                 product_data: {
-                  name: `${item.base} ${item.flavor} ${item.support}`
+                  name: `${item.name} ${item.base} ${item.flavor} ${item.support}`
                 },
                 unit_amount: item.price * 100
               },

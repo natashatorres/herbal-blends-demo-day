@@ -60,18 +60,30 @@
   <div id="cart" class="row">
     <div class="col-xxl-6 col-md-1 my-5">
   <% for(var i=0; i<cart.length; i++) {%>
-  <div class="card my-2" style="width: 35rem;">
-    <div class="card-body">
+    <div class="card my-2" style="width: 35rem;">
+      <div class="card-body">
+
+  
+    <% if(cart[i].name){%>
+
+   
+      <span><%= cart[i].name %> </span>
+    
+    
+    <% } else { %>
+
       <span><%= cart[i].base %> </span>
       <span><%= cart[i].flavor %> </span>
       <span><%= cart[i].support %> </span>
-      <span class="hide"><%= cart[i]._id %></span>
-      <span><i class="fas fa-plus-square qty" aria-hidden="true"></i></span>
-      <span id="qty"><%= cart[i].qty %></span>
-      <span><i class="fas fa-minus-square qty" aria-hidden="true"></i></span>
-      <span><i class="fas fa-times"" aria-hidden="true"></i></span>
-    </div>
-  </div>
+
+  <% } %>
+  <span class="hide"><%= cart[i]._id %></span>
+  <span><i data-id="<%= cart[i]._id %>" class="fas fa-plus-square qty" aria-hidden="true"></i></span>
+  <span id="qty"><%= cart[i].qty %></span>
+  <span><i data-id="<%= cart[i]._id %>" class="fas fa-minus-square qty" aria-hidden="true"></i></span>
+  <span><i data-id="<%= cart[i]._id %>" class="fas fa-times"" aria-hidden="true"></i></span>
+</div>
+</div>
   <% } %>
 </div>
 </div>

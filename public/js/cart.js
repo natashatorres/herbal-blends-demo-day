@@ -5,7 +5,7 @@ const trash = document.getElementsByClassName("fa-times");
 
 Array.from(qty).forEach(function(element) {
     element.addEventListener('click', function(){
-      const id = this.parentNode.parentNode.childNodes[7].innerText
+      const id = element.dataset.id
       let qty = 1
       if(element.classList.contains('fa-minus-square')){
         qty = -1;
@@ -35,7 +35,7 @@ Array.from(qty).forEach(function(element) {
 Array.from(trash).forEach(function(element) {
     element.addEventListener('click', function(){
       console.log(this.parentNode.parentNode.childNodes[7].innerText)
-      const id = this.parentNode.parentNode.childNodes[7].innerText
+      const id = element.dataset.id
 
 
       fetch('cart', {

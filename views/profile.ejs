@@ -80,15 +80,30 @@
         </div>
         <div class="col-sm-6">
           <ul class="messages">
-            <% for(var i=0; i<cart.length; i++) {%>
+            <% for(var i=0; i<pastOrders.length; i++) {
+              const orderDetails = pastOrders[i].orders.map(order => {
+                if(order.name){
+                  return order.name
+                }else{
+                  return order.base + " " + order.flavor + " " + order.support
+                }
+              })
+           
+              %>
               <li class="message">
-                <span><%= cart[i].orderDate %></span>
-                <span><%= cart[i].base %></span>
-                <span><%= cart[i].flavor %></span>
-                <span><%= cart[i].support %></span>
-                <span><%= cart[i].qty %></span>
-                <span class="hide"><%= cart[i]._id %></span>
-              <% } %>
+                <span><%= pastOrders[i].date %></span>
+                <span><%= pastOrders[i].qty %></span>
+                <span><%= pastOrders[i].priceTotal %></span>
+                <ul>
+                
+                  <% for(var j=0; j<orderDetails.length; j++) {%>
+                  <li>
+                  <span><%= orderDetails[j] %></span>
+                  </li>
+                  <% } %>  
+                </ul>
+              </li>
+                  <% } %>
           </ul>
         
 
