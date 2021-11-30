@@ -60,7 +60,7 @@
       <form action="/cart" method="POST">
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<base.length; i++) {%>
-            <div class="col-sm-3">
+            <div class="col-xxl-3 col-md-12 d-flex justify-content-center mb-3">
               <div class="card text-center" style="width: 18rem;height:30rem;">
                 <img src="img/mugwort.png" class="base" alt="an image of dried herbs" width="200px">
               
@@ -90,7 +90,7 @@
         
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<flavor.length; i++) {%>
-            <div class="col-sm-3">
+            <div class="col-xxl-3 col-md-12  d-flex justify-content-center mb-3">
               <div class="card text-center" style="width: 18rem;height:30rem;">
                   <img src="img/mint.png" class="flavor" width="200px">
                 <div class="card-body"> 
@@ -117,9 +117,9 @@
         </div>
     
         <!-- support -->
-        <div class="row justify-content-center mt-3">
+        <div class="row justify-content-center">
           <% for(var i=0; i<base.length; i++) {%>
-            <div class="col-sm-3">
+            <div class="col-xxl-3 col-md-12 d-flex justify-content-center mb-3">
               <div class="card text-center" style="width: 18rem;height:30rem;">
                 <label>
                   <img src="img/skullCap.jpg" class="support mt-3">
@@ -147,7 +147,7 @@
         </div>
     
         <section class="button">
-          <button type="submit" class="submitOrder btn-lg" style="width: 18rem;">ENTER</button>
+          <button type="submit" class="submitOrder btn-lg" style="width: 18rem;">Add To Cart</button>
         </section>
       </form>
     </div>

@@ -1,0 +1,56 @@
+<div class="container-xl">
+    <div class="row justify-content-center mt-3">
+      <div class="col-xxl-4 col-md-12 d-flex justify-content-center mb-3">
+        <% for(var i=0; i<specialblends.length; i++) {%>
+          <form action="/cart" method="POST">
+            <div class="card text-center" style="width: 18rem;height:32rem;">             
+              <div class="card-body">
+                <span class="herbName">
+                  <a href="">
+                    <%= specialblends[i].name %>
+                  </a>
+                </span>
+                <span class="">
+                  <%= specialblends[i].base %>,
+                  <%= specialblends[i].flavor %>,
+                  <%= specialblends[i].support %>
+                </span>
+                <span class="herbProp">
+                  <%= specialblends[i].medicinalProp %>
+                </span>
+                <input type="hidden" id="<%= specialblends[i].name%>" name="name" value="<%= specialblends[i].name%>">
+                <button type="submit"><i class="fas fa-plus"></i></button></span>
+              </div>
+            </div>
+          </form>
+          <% } %>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+      <div class="col-xxl-4 col-md-12 d-flex justify-content-center mb-3">
+
+        <% for(var i=0; i<herbs.length; i++) {%>
+          <form action="/cart" method="POST">
+            <div class="card text-center" style="width: 18rem;height:32rem;">
+              <label>
+                <input type="hidden" id="<%= herbs[i].name%>" name="name" value="<%= herbs[i].name%>">
+                <img src="img/mugwort.png" class="base pt-2" alt="an image of dried herbs" width="200px">
+              </label>
+              <div class="card-body">
+                <span class="herbName">
+                  <a href="/plant?plantname=<%= herbs[i].alternateNames[0]%>">
+                    <%= herbs[i].name %>
+                  </a>
+                </span>
+                <span class="herbProp">
+                  <%= herbs[i].medicinalProp %>
+                </span>
+                <button type="submit"><i class="fas fa-plus"></i></button></span>
+              </div>
+            </div>
+          </form>
+          <% } %>
+        </div>
+    </div>
+  </div>
