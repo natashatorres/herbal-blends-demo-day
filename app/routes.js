@@ -251,7 +251,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
               price_data: {
                 currency: 'usd',
                 product_data: {
-                  name: `${item.name} ${item.base} ${item.flavor} ${item.support}`
+                  name: item.name ? item.name : item.base + " " + item.flavor + " " + item.support + "Blend"
                 },
                 unit_amount: item.price * 100
               },

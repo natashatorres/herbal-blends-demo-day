@@ -122,3 +122,7 @@ https://github.com/flowerchecker/Plant-id-API/blob/master/javascript/sync_identi
 
 //camera use
 https://usefulangle.com/post/352/javascript-capture-image-from-camera
+
+
+//how to group by date for profile page
+https://stackoverflow.com/questions/46802448/how-do-i-group-items-in-an-array-by-date

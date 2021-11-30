@@ -48,18 +48,23 @@
         </ul>
       </div>
     </nav>
-    <div class="container-xl">
+   
+    <main class="container mt-5 d-block">
+          <div class="d-flex justify-content-center">
+          <h1 class="">Customize your own blend</h1>
+          <p class="">Pick an herb from each category.</p>
+          </div>
+    </main>
+  
+    <div class="container-xl">  
       <form action="/cart" method="POST">
-    
         <!-- base herbs -->
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<base.length; i++) {%>
             <div class="col-sm-3">
-              <div class="card text-center" style="width: 18rem;height:25rem;">
-                <label>
-                  <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
-                  <img src="img/mugwort.png" class="base" alt="an image of dried herbs" width="200px">
-                </label>
+              <div class="card text-center" style="width: 18rem;height:30rem;">
+                <img src="img/mugwort.png" class="base" alt="an image of dried herbs" width="200px">
+              
                 <div class="card-body">
                     <span class="herbName">
                       <a href="/plant?plantname=<%= base[i].alternateNames[0]%>">
@@ -67,12 +72,16 @@
                       </a>
                     </span>
                     <span class="herbProp">
-                      <%= base[i].medicinalProp %>
-                    </span>
-                    <span class="herbPos">
                       <%= base[i].component %>
                     </span>
-                    <span><button>Add to Blend</button> <button>Add to Cart</button></span>
+                 
+                    <span class="herbProp">
+                      <%= base[i].medicinalProp %>
+                    </span>
+                    <label>
+                      <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
+                      <i class="fas fa-plus"></i>
+                    </label>
                 </div>
               </div>
             </div>
@@ -80,26 +89,29 @@
         </div>
     
         <!-- flavor herbs -->
+        
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<flavor.length; i++) {%>
             <div class="col-sm-3">
-              <div class="card text-center" style="width: 18rem;height:25rem;">
-                <label>
-                  <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
+              <div class="card text-center" style="width: 18rem;height:30rem;">
                   <img src="img/mint.png" class="flavor" width="200px">
-                </label>
                 <div class="card-body"> 
                     <span class="herbName card-text">
                       <a href="/plant?plantname=<%= flavor[i].alternateNames[0]%>" class="card-text">
                         <%= flavor[i].name %>
                       </a>
                     </span>
+
+                    <span class="herbProp">
+                      <%= flavor[i].component %>
+                    </span>
                     <span class="herbProp">
                       <%= flavor[i].medicinalProp %>
                     </span>
-                    <span class="herbPos">
-                      <%= flavor[i].component %>
-                    </span>
+                    <label>
+                      <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
+                      <i class="fas fa-plus"></i>
+                    </label>
                 </div>
               </div>
             </div>
@@ -110,9 +122,8 @@
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<base.length; i++) {%>
             <div class="col-sm-3">
-              <div class="card text-center" style="width: 18rem;height:25rem;">
+              <div class="card text-center" style="width: 18rem;height:30rem;">
                 <label>
-                  <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
                   <img src="img/skullCap.jpg" class="support">
                 </label>
                 <div class="card-body">
@@ -122,11 +133,15 @@
                       </a>
                     </span>
                     <span class="herbProp">
-                      <%= support[i].medicinalProp %>
-                    </span>
-                    <span class="herbPos">
                       <%= support[i].component %>
                     </span>
+                    <span class="herbProp">
+                      <%= support[i].medicinalProp %>
+                    </span>
+                    <label>
+                      <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
+                      <i class="fas fa-plus"></i>
+                    </label>
                 </div>
               </div>
             </div>
@@ -134,13 +149,12 @@
         </div>
     
         <section class="button">
-          <button type="submit" class="submitOrder btn-sm" style="width: 18rem;">ENTER</button>
+          <button type="submit" class="submitOrder btn-lg" style="width: 18rem;">ENTER</button>
         </section>
-    
       </form>
     </div>
     
-
+  
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
           <section class="mb-4 d-flex justify-content-center">

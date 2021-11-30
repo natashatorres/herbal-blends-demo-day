@@ -145,22 +145,8 @@ text-transform: none;
 }
 
 
-[type=radio] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
-/* IMAGE STYLES */
-[type=radio] + img {
-  cursor: pointer;
-}
 
-/* CHECKED STYLES */
-[type=radio]:checked + img {
-  outline: 2px solid rgb(224 235 207)
-}
 
  /* stylelint-disable selector-list-comma-newline-after */
 
@@ -180,6 +166,11 @@ text-transform: none;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  color: rgb(224 235 207);
+}
+p{
+font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+color: black;
 }
 
 .display-4 {

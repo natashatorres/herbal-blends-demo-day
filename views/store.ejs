@@ -54,12 +54,12 @@
 
     
     <div class="container-xl">
-    
         <!-- base herbs -->
         <div class="row justify-content-center mt-3">
+          <div class="col-sm-3">
           <% for(var i=0; i<specialblends.length; i++) {%>
             <form action="/cart" method="POST">
-            <div class="col-sm-3">
+       
               <div class="card text-center" style="width: 18rem;height:25rem;">
                 <label>
                   <input type="hidden" id="<%= specialblends[i].name%>" name="name" value="<%= specialblends[i].name%>">
@@ -70,28 +70,33 @@
                         <%= specialblends[i].name %>
                       </a>
                     </span>
+               
+                    <span class="">
+                      <%= specialblends[i].base %>,
+                      <%= specialblends[i].flavor %>,
+                      <%= specialblends[i].support %>
+                    </span>
+
                     <span class="herbProp">
                       <%= specialblends[i].medicinalProp %>
                     </span>
-                    <span class="herbPos">
-                      <%= specialblends[i].base %>
-                      <%= specialblends[i].flavor %>
-                      <%= specialblends[i].support %>
-                    </span>
-                  <button type="submit">Add to Cart</button></span>
+                  <button type="submit"><i class="fas fa-plus"></i></button></span>
                 </div>
               </div>
             </form>
-            </div>
+    
             <% } %>
+          </div>
         </div>
+      </div>
 
     <div class="container-xl">
+      <div class="row justify-content-center mt-3">
+        <div class="col-sm-3">
+
       <form action="/cart" method="POST">
         <!-- base herbs -->
-        <div class="row justify-content-center mt-3">
           <% for(var i=0; i<herbs.length; i++) {%>
-            <div class="col-sm-3">
               <div class="card text-center" style="width: 18rem;height:25rem;">
                 <label>
                   <input type="radio" id="<%= herbs[i].name%>" name="herb" value="<%= herbs[i].name%>">
@@ -111,9 +116,10 @@
                     </span>
                   <button type="submit">Add to Cart</button></span>
                 </div>
-              </div>
-            </div>
+            
             <% } %>
+          </div>
+        </div>
         </div>
       </form>
     </div>
