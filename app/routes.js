@@ -1,9 +1,21 @@
-// const { default: Stripe } = require("stripe");
-// require('dotenv').config()
 
-module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
+module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, fs) {
 
   //MULTER =======================================================================
+  const userSchema = require('./models/user')
+  const path = require('path');
+
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/uploads')
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.fieldname + '-' + Date.now() + ".png")
+    }
+  });
+
+  let upload = multer({ storage: storage });
+
 
 
   // home page ===================================================================
@@ -84,7 +96,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
       res.redirect('/cart') /// create a get cart page
     })
   })
-  
+
   app.post('/allHerbsCart', isLoggedIn, (req, res) => {
     //created a new document that went into messages collection
     console.log(req.body)
@@ -134,7 +146,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   //stripe confirmation pages ==============================================
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray(async (err, cartItems) => {
-      db.collection('cart').updateMany( { $and: [ { userId: ObjectId(req.user._id)}, { completed: false} ] }, {
+      db.collection('cart').updateMany({ $and: [{ userId: ObjectId(req.user._id) }, { completed: false }] }, {
         $set: { completed: true, orderDate: new Date() }
       },
         async (err, updateResult) => {
@@ -199,7 +211,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   app.get('/profile', isLoggedIn, function (req, res) {
     db.collection('cart').find({ userId: req.user._id, completed: true }).toArray((err, result) => {
       if (err) return console.log(err)
-      
+
       const groups = result.reduce((groups, order) => {
         console.log(order)
         const date = order.orderDate.toString().split('T')[0];
@@ -229,6 +241,56 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch) {
   });
 
   //MULTER ==========================================
+  app.post('/imageUpload', upload.single('file-to-upload'), (req, res, next) => {
+    insertDocuments(db, req, '/uploads/' + req.file.filename, () => {
+      res.redirect('/profile')
+    });
+  });
+
+  var insertDocuments = function (db, req, filePath, callback) {
+    var collection = db.collection('users');
+    var uId = ObjectId(req.session.passport.user)
+    collection.findOneAndUpdate({
+      "_id": uId
+    }, {
+      $set: {
+        "local.img": filePath
+      }
+    }, {
+      sort: {
+        _id: -1
+      },
+      upsert: false
+    }, (err, result) => {
+      if (err) return res.send(err)
+      callback(result)
+    })
+  }
+
+  // app.post('/imageUpload', upload.single('image'), (req, res, next) => {
+  //   console.log('starting image upload')
+  //   const obj = {
+  //     name: req.body.name,
+  //     desc: req.body.desc,
+  //     img: {
+  //       data: '/public/uploads/' + req.file.filename,
+  //       contentType: 'image/png'
+  //     }
+  //   }
+  //   console.log(obj)
+  //   userSchema.findOneAndUpdate({
+  //     _id: req.user._id,
+  //   },
+  //     obj, (err, item) => {
+  //       if (err) {
+  //         console.log(err);
+  //       }
+  //       else {
+  //         console.log('Saved image to database')
+  //         res.redirect('/profile');
+  //       }
+  //     });
+  // });
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {

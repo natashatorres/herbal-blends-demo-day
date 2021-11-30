@@ -68,14 +68,14 @@
                 </label>
                 <div class="card-body">
                   <span class="herbName">
-                    <a href="/plant?plantname=<%= herbs[i].alternateNames[0]%>">
+                    <a href="">
                       <%= specialblends[i].name %>
                     </a>
                   </span>
                   <span class="">
                     <%= specialblends[i].base %>,
-                      <%= specialblends[i].flavor %>,
-                        <%= specialblends[i].support %>
+                    <%= specialblends[i].flavor %>,
+                    <%= specialblends[i].support %>
                   </span>
                   <span class="herbProp">
                     <%= specialblends[i].medicinalProp %>
@@ -94,7 +94,7 @@
             <form action="/cart" method="POST">
               <div class="card text-center" style="width: 18rem;height:30rem;">
                 <label>
-                  <input type="radio" id="<%= herbs[i].name%>" name="herb" value="<%= herbs[i].name%>">
+                  <input type="hidden" id="<%= herbs[i].name%>" name="name" value="<%= herbs[i].name%>">
                   <img src="img/mugwort.png" class="base pt-2" alt="an image of dried herbs" width="200px">
                 </label>
                 <div class="card-body">
@@ -106,9 +106,6 @@
                   <span class="herbProp">
                     <%= herbs[i].medicinalProp %>
                   </span>
-                  <span class="herbPos">
-                    <%= herbs[i].component %>
-                  </span>
                   <button type="submit"><i class="fas fa-plus"></i></button></span>
                 </div>
               </div>
@@ -116,6 +113,9 @@
             <% } %>
         </div>
       </div>
+    </div>
+
+
     </div>
 
 

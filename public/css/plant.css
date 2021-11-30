@@ -1,38 +1,129 @@
-*{
-    box-sizing: border-box;
-  }
-  
-  body{
-    margin: 0;
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    text-transform: uppercase;
-  }
-  
-  a{
-    text-decoration: none;
-    color: rgb(122 146 91);
-  }
-  
-  nav{
-    background-color: rgb(241 242 242);
-    margin-bottom: 0;
-    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: 1.2rem;
-  }
-  
-  .logo{
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(122 146 91);
+}
+
+nav {
+  background-color: rgb(241 242 242);
+  margin-bottom: 0;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.logo {
   width: 15em;
-  }
-  
-  .navbar-toggler-icon{
-    width: 10px;
-  }
+}
+
+.navbar-toggler-icon {
+  width: 10px;
+}
+
+.hatnote {
+  display: hidden;
+}
+
+tr th {
+  background-color: none !important;
+
+}
 
 footer {
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
-  }
+  position: fixed;
+  height: 100px;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+/* Infobox template style */
+.infobox {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+	border-spacing: 3px;
+	background-color: #f8f9fa;
+	color: black;
+	/* @noflip */
+	margin: 0.5em 0 0.5em 1em;
+	padding: 0.2em;
+	/* @noflip */
+	float: right;
+	/* @noflip */
+	clear: right;
+	font-size: 88%;
+	line-height: 1.5em;
+}
+
+.infobox caption {
+	font-size: 125%;
+	font-weight: bold;
+	padding: 0.2em;
+	text-align: center;
+}
+
+.infobox tr,
+.infobox th {
+	vertical-align: top;
+	/* @noflip */
+	text-align: left;
+}
+
+.infobox.bordered {
+	border-collapse: collapse;
+}
+
+.infobox.bordered td,
+.infobox.bordered th {
+	border: 1px solid #a2a9b1;
+}
+
+.infobox.bordered .borderless td,
+.infobox.bordered .borderless th {
+	border: 0;
+}
+
+.infobox.sisterproject {
+	width: 20em;
+	font-size: 90%;
+}
+
+.infobox.standard-talk {
+	border: 1px solid #c0c090;
+	background-color: #f8eaba;
+}
+
+.infobox.standard-talk.bordered td,
+.infobox.standard-talk.bordered th {
+	border: 1px solid #c0c090;
+}
+
+/* styles for bordered infobox with merged rows */
+.infobox.bordered .mergedtoprow td,
+.infobox.bordered .mergedtoprow th {
+	border: 0;
+	border-top: 1px solid #a2a9b1;
+	/* @noflip */
+	border-right: 1px solid #a2a9b1;
+}
+
+.infobox.bordered .mergedrow td,
+.infobox.bordered .mergedrow th {
+	border: 0;
+	/* @noflip */
+	border-right: 1px solid #a2a9b1;
+}
+
+.references{
+  display: none;
+}

@@ -30,8 +30,8 @@ const stripe = require('stripe')(
 const fetch = require('node-fetch')
 
 // multer
-
-
+const multer = require('multer')
+const path = require('path')
 
 const MongoClient = require('mongodb').MongoClient
 const mongoose = require('mongoose');
@@ -59,7 +59,7 @@ let db
 mongoose.connect(configDB.url, (err, database) => {
   if (err) return console.log(err)
   db = database
-  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch);
+  require('./app/routes.js')(app, passport, db, ObjectId, stripe, fetch, multer, fs);
 }); // connect to our database
 
 
