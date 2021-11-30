@@ -213,8 +213,9 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       if (err) return console.log(err)
 
       const groups = result.reduce((groups, order) => {
-        console.log(order)
+        console.log("order", order)
         const date = order.orderDate.toString().split('T')[0];
+        console.log(date, typeof order.orderDate)
         if (!groups[date]) {
           groups[date] = [];
         }
@@ -231,7 +232,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
         };
       });
 
-      console.log(groups, groupArrays)
+      console.log("groups here", groups, "group array here", groupArrays)
 
       res.render('profile.ejs', {
         user: req.user,

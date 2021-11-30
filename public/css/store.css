@@ -112,8 +112,8 @@ text-transform: none;
 
 .submitOrder{
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(224 235 207);
-  color:white;
+  background-color:white;
+  color:rgb(224 235 207);
   height:4em;
   width: 20em !important;
   border:none;
@@ -133,23 +133,6 @@ text-transform: none;
   margin-bottom: 2em;
 }
 
-[type=radio] { 
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* IMAGE STYLES */
-[type=radio] + i {
-  cursor: pointer;
-}
-
-/* CHECKED STYLES */
-[type=radio] + i{
-  color: rgb(224 235 207);
-}
-
  /* stylelint-disable selector-list-comma-newline-after */
 .card {
   background: #fff;
@@ -161,6 +144,7 @@ text-transform: none;
   align-items: center;
   padding-top: 1em;
   padding-bottom: 1em;
+  font-size: .8em;
 }
 .card img {
   display: block;
