@@ -45,11 +45,9 @@ form{
   display: block;
   align-items: center;
 }
-.signinContainer{
-  width: auto;
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
+
+.container{
+  text-align: center;
 }
 
 .herbs{
@@ -113,25 +111,19 @@ text-transform: none;
 }
 
 .submitOrder{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   background-color:rgb(224 235 207);
   color:white;
   height:4em;
-  width: 20em;
+  width: 20em !important;
   border:none;
   text-transform: uppercase;
+  margin-left: .5em;
+  margin-bottom: .5em;
 }
 
 .hide{
   display:none;
-}
-
-
-.btn{
-  padding: .5em;
-  text-decoration: none;
-  color:black;
-  background-color:rgb(224 235 207);
-  margin-top: 2em;
 }
 
 .confirmation{
@@ -141,7 +133,6 @@ text-transform: none;
   margin-bottom: 2em;
 }
 
-
 [type=radio] { 
   position: absolute;
   opacity: 0;
@@ -150,14 +141,117 @@ text-transform: none;
 }
 
 /* IMAGE STYLES */
-[type=radio] + img {
+[type=radio] + i {
   cursor: pointer;
 }
 
 /* CHECKED STYLES */
-[type=radio]:checked + img {
-  outline: 2px solid rgb(224 235 207)
+[type=radio] + i{
+  color: rgb(224 235 207);
 }
 
- 
+ /* stylelint-disable selector-list-comma-newline-after */
+.card {
+  background: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  position:relative;
+  display:grid;
+  justify-items: center;
+  align-items: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.card img {
+  display: block;
+  position:relative;
+  z-index:1;
+  width: 80%;
+  margin:0 auto;
+  transition: transform 0.2s ease-in-out;
+}
+.card img.large {
+  width: 65%;
+}
+.card:hover img {
+  transform:translateY(-10%);
+}
+.item-title {
+  position: absolute;
+  left:1em;
+  bottom:1em;
+}
+.image-container {
+  position:relative;
+}
+.shadow {
+  position:absolute;
+  bottom:1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* stylelint-disable selector-list-comma-newline-after */
+
+.blog-header {
+  line-height: 1;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.blog-header-logo {
+  font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  font-size: 2.25rem;
+}
+
+.blog-header-logo:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  color: rgb(224 235 207);
+}
+p{
+font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+color: black;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+
+.card-img-right {
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+
+.flex-auto {
+  flex: 0 0 auto;
+}
+
+.h-250 { height: 250px; }
+@media (min-width: 768px) {
+  .h-md-250 { height: 250px; }
+}
+
+/* Pagination */
+.blog-pagination {
+  margin-bottom: 4rem;
+}
+.blog-pagination > .btn {
+  border-radius: 2rem;
+}
 

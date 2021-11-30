@@ -30,7 +30,12 @@
     width: 10px;
   }
   
-
+  footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+  }
 /* stylelint-disable selector-list-comma-newline-after */
 
 .blog-header {
