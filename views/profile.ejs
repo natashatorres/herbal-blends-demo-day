@@ -59,7 +59,7 @@
               <img src="<%=user.local.img%>" style="width:200px" class="profileImg">
             <% } %>
                 
-            <img src="img/herbs.png" class="" alt="" style="width: 200px;">
+            <img src="img/herbs.png" class="profile-image rounded-circle" alt="" style="width: 200px;">
 
             <form action="/imageUpload" method="POST" enctype="multipart/form-data">
               <div class="uploadImg">
@@ -71,6 +71,8 @@
               
             </div>
           </div>
+
+        
           <div class="col-lg-6 order-1 order-lg-1 hero-img">
             <ul class="messages">
               <% for(var i=0; i<pastOrders.length; i++) { const orderDetails=pastOrders[i].orders.map(order=> {

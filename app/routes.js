@@ -93,7 +93,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     }, (err, result) => {
       if (err) return console.log(err)
       console.log('saved to database')
-      res.redirect('/cart') /// create a get cart page
+      res.redirect('/store') /// create a get cart page
     })
   })
 
@@ -151,7 +151,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       },
         async (err, updateResult) => {
           console.log("result here", cartItems)
-          const total = cartItems.reduce((a, b) => a.price + b.price)
+          const total = cartItems.reduce((a, b) => a.price + b.price, 0)
           console.log(total)
           let html = "Reciept from Herbal Blends " + cartItems.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
           sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
@@ -373,6 +373,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       subject: subject,
       generateTextFromHTML: true,
       html: html,
+
     };
 
     smtpTransport.sendMail(mailOptions, (error, response) => {

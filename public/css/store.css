@@ -140,6 +140,10 @@ text-transform: none;
   float:left;
   width: 33%;
 }
+
+.card .fa-cart-plus{
+  font-size: 1.5em;
+}
  /* stylelint-disable selector-list-comma-newline-after */
 .card {
   background: #fff;
@@ -206,9 +210,6 @@ color: black;
   form {
     margin: 0 5em;
   }
-
-
-
   
 }
 

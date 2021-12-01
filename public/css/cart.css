@@ -15,25 +15,43 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
+
 }
 
 .logo{
-width: 15em;
+width: 12em;
 }
 
 .navbar-toggler-icon{
-  width: 10px;
+  width: 8px;
 }
-h1{
-  font-weight: 100;
-  font-size: 2px;
-  color:rgb(224 235 207);
+
+
+.container {
+  max-width: 960px;
 }
+
+h4{
+  color: rgb(126 153 96) !important;
+}
+
+span{
+  color: rgb(126 153 96) !important;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+
+}
+
+.rounded-pill{
+  background-color: rgb(126 153 96) !important;
+  color: white !important;
+
+}
+
 
 h3{
   margin-top: 40px;
@@ -41,9 +59,6 @@ h3{
 
 
 
-span{
-  padding: .5em;
-}
 
 
 #qty{
@@ -52,23 +67,18 @@ span{
 }
 
 #checkout{
-  background-color:rgb(224 235 207);
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  background-color:rgb(126 153 96);
   color:white;
   height:4em;
   width: 20em;
   border:none;
   text-transform: uppercase;
+  margin-left: .5em;
+  margin-bottom: .5em;
 }
 
 .hide{
   display:none;
 }
-
-footer {
-  position: fixed;
-  height: 100px;
-  bottom: 0;
-  width: 100%;
-}
-
 
