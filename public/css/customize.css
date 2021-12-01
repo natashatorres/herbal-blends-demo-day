@@ -15,7 +15,7 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);;
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -30,12 +30,6 @@ width: 15em;
   width: 10px;
 }
 
-h1{
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  font-weight: 100;
-  font-size: 2px;
-  color:rgb(224 235 207);
-}
 
 h3{
   margin-top: 40px;
@@ -63,14 +57,14 @@ form{
 }
 
 .herbName a{
-color: rgb(224 235 207);
+color: rgb(126 153 96);
 font-size: 2em;
 text-decoration: none;
 text-transform: none;
 }
 
 .herbName a:hover{
-  color:black;
+  color:rgb(224 235 207);
 }
 
 .herbName{
@@ -102,7 +96,7 @@ text-transform: none;
 
 .submitOrder{
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(224 235 207);
+  background-color:rgb(126 153 96);
   color:white;
   height:4em;
   width: 20em !important;
@@ -137,7 +131,7 @@ text-transform: none;
 
 /* CHECKED STYLES */
 [type=radio] + i{
-  color: rgb(224 235 207);
+  color: rgb(126 153 96);;
 }
 
  /* stylelint-disable selector-list-comma-newline-after */
@@ -199,7 +193,7 @@ text-transform: none;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-  color: rgb(224 235 207);
+  color: rgb(126 153 96);
 }
 p{
 font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
@@ -237,11 +231,4 @@ color: black;
   .h-md-250 { height: 250px; }
 }
 
-/* Pagination */
-.blog-pagination {
-  margin-bottom: 4rem;
-}
-.blog-pagination > .btn {
-  border-radius: 2rem;
-}
 

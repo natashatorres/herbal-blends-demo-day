@@ -15,7 +15,7 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -46,7 +46,7 @@ canvas{
 
 .identifyBut{
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(224 235 207);
+  background-color:rgb(126 153 96);
   color:white;
   height:4em;
   width: 20em;
@@ -73,6 +73,8 @@ canvas{
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
+  text-align: center;
+  color:rgb(126 153 96);
 }
 
 .display-4 {

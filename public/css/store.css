@@ -15,7 +15,7 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -39,7 +39,7 @@ h1{
 
 h3{
   margin-top: 40px;
-  color:rgb(224 235 207);
+  color:rgb(126 153 96);
 }
 form{
   display: block;
@@ -73,14 +73,14 @@ form{
 }
 
 .herbName a{
-color: rgb(224 235 207);
+color: rgb(126 153 96);
 font-size: 2em;
 text-decoration: none;
 text-transform: none;
 }
 
 .herbName a:hover{
-  color:black;
+  color:rgb(224 235 207);
 }
 
 .herbName{
@@ -113,7 +113,7 @@ text-transform: none;
 .submitOrder{
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   background-color:white;
-  color:rgb(224 235 207);
+  color:rgb(126 153 96);
   height:4em;
   width: 20em !important;
   border:none;
@@ -133,6 +133,13 @@ text-transform: none;
   margin-bottom: 2em;
 }
 
+.container-xl{
+  overflow: auto;
+}
+.cardRow{
+  float:left;
+  width: 33%;
+}
  /* stylelint-disable selector-list-comma-newline-after */
 .card {
   background: #fff;
@@ -175,38 +182,38 @@ text-transform: none;
   transform: translateX(-50%);
 }
 
-/* stylelint-disable selector-list-comma-newline-after */
-
-.blog-header {
-  line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.blog-header-logo {
-  font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-  font-size: 2.25rem;
-}
-
-.blog-header-logo:hover {
-  text-decoration: none;
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-  color: rgb(224 235 207);
+  color: rgb(126 153 96);
 }
 p{
 font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
 color: black;
 }
 
-.display-4 {
-  font-size: 2.5rem;
+#footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;
+  background:#999;
 }
+
+
 @media (min-width: 768px) {
   .display-4 {
     font-size: 3rem;
   }
+  
+}
+
+@media (max-width: 768px) {
+  .cardRow {
+    float:none !important;
+  }
+ 
+  
 }
 
 .nav-scroller {

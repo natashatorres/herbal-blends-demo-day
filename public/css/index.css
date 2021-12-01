@@ -15,11 +15,12 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
+
 }
 
 .logo{
@@ -74,47 +75,18 @@ form{
   margin-top: 2em;
 }
 
-.herbName a{
-color: rgb(224 235 207);
-font-size: 2em;
-text-decoration: none;
-text-transform: none;
-}
 
-.herbName a:hover{
-  color:black;
-}
-
-.herbName{
-  color: rgb(224 235 207);
-  font-family: 'Cedarville Cursive', Arial, Helvetica, sans-serif;
-  display:inline-block;
-  text-decoration: none;
-  text-align: center;
-}
 
 .support{
   width: 13em;
   padding: 0 2em;
 }
 
-.herbProp{
-  padding: 1em 1em;
-  display: block;
-  align-items: center;
-}
 
-.herbPos{
-  display: block;
-  align-items: center;
-  text-transform: uppercase;
-  color:rgb(224 235 207);
-  padding: 1em 1em;
-}
 
 .submitOrder{
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(224 235 207);
+  background-color:rgb(126 153 96);
   color:white;
   height:4em;
   width: 20em;
