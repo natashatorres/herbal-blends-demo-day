@@ -24,11 +24,11 @@ nav{
 }
 
 .logo{
-width: 15em;
+width: 12em;
 }
 
 .navbar-toggler-icon{
-  width: 10px;
+  width: 8px;
 }
 
 h1{
@@ -171,6 +171,12 @@ form{
   #hero .hero-img img {
     width: 80%;
   }
+
+  #hero .buttons{
+    margin: 2 auto !important;
+  }
+
+
 }
 
 @-webkit-keyframes up-down {

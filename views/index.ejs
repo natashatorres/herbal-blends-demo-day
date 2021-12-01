@@ -24,31 +24,28 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-md navbar-light" fixed-top role="navigation">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light " fixed-top role="navigation">
+
       <!-- navbar brand / title -->
       <a class="navbar-brand" href="/">
         <img src="img/logo2.png" class="logo img-responsive" alt="logo that reads herbal blends">
       </a>
-    </div>
+
       <!-- toggle button for mobile nav -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
         aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
+   
       <div class="collapse navbar-collapse justify-content-end" id="main-nav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/identify"><i class="fas fa-fingerprint"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default" title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
       </div>
     </nav>
-  </header>
 
   <section id="hero" class="d-flex align-items-center">
 
@@ -70,40 +67,18 @@
 
 
   <main class="container mt-5">
-    <div class="p-5 p-md-4 mb-4 mx-auto">
+    <div class="p-5 p-md-4 mb-4 mx-auto buttons">
       <div class="col-md-6 px-0 d-inline">
         <a href="/customize"><button class="submitOrder btn-md rounded">Customize Blend</button></a>
         <a href="/store"><button class="submitOrder btn-md rounded">View All Herbs</button></a>
-        <a href="/identify"><button class="submitOrder btn-md rounded">Herb Identification</button></a>
+        <a href="/identify"><button class="submitOrder btn-md rounded">Herb Identification <i class="fas fa-fingerprint"></i></button></a>
       </div>
     </div>
     </div>
   </main>
 
 
-  <footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-      <section class="mb-4 d-flex justify-content-center">
-        <!-- Facebook -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-          data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
-
-        <!-- Twitter -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-          data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
-
-        <!-- Google -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-          data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
-
-        <!-- Instagram -->
-        <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-          data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
-
-      </section>
-    </div>
-  </footer>
-
+  
 
 
   <script src="index.js"></script>
