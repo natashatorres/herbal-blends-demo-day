@@ -24,7 +24,7 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-md navbar-light" fixed-top role="navigation">
+    <nav class="navbar navbar-expand-md navbar-light " fixed-top role="navigation">
 
       <!-- navbar brand / title -->
       <a class="navbar-brand" href="/">
@@ -37,110 +37,86 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
+   
       <div class="collapse navbar-collapse justify-content-end" id="main-nav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/identify"><i class="fas fa-fingerprint"></i></a></li>
-          <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default"
-              title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default" title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
       </div>
     </nav>
-  </header>
 
-  <div class="container">
 
-    <div class="page-header text-center">
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-    </div>
+    <section id="hero" class="d-flex align-items-center">
 
-    <div class="row">
-      <div class="col-md-4">
-        <div class="position-sticky" style="top: 2rem;">
-          <div class="p-4 mb-3 bg-light rounded">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 pt-5 pt-lg-0 order-1 order-lg-1 d-flex flex-column justify-content-center">
             <h4 class="fst-italic">Profile</h4>
             <% if(user.local.img !== ""){ %>
               
               <img src="<%=user.local.img%>" style="width:200px" class="profileImg">
             <% } %>
                 
-         
+            <img src="img/herbs.png" class="" alt="" style="width: 200px;">
+
             <form action="/imageUpload" method="POST" enctype="multipart/form-data">
               <div class="uploadImg">
                 <input type="file" id="image" name="file-to-upload" value="" class="profilePic" required>
               </div>
               <button type="submit">UPLOAD</button>
             </form>
+            <div class="d-flex">
+              
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-1 hero-img">
+            <ul class="messages">
+              <% for(var i=0; i<pastOrders.length; i++) { const orderDetails=pastOrders[i].orders.map(order=> {
+                if(order.name){
+                return order.name
+                }else{
+                return order.base + " " + order.flavor + " " + order.support
+                }
+                })
+    
+                %>
+                <li class="message">
+                  <span>Purchased on: <%= pastOrders[i].orders[0].shortDate %></span>
+                  <span>Qty: 
+                    <%= pastOrders[i].qty %>
+                  </span>
+                  <span>
+                    Total: $<%= pastOrders[i].priceTotal %>.00
+                  </span>
+                  <ul>
+    
+                    <% for(var j=0; j<orderDetails.length; j++) {%>
+                      <li>
+                        <span>
+                          <%= orderDetails[j] %>
+                        </span>
+                      </li>
+                      <% } %>
+                  </ul>
+                </li>
+                <% } %>
+            </ul>
+    
+    
           </div>
         </div>
       </div>
+  
+    </section>
+  <div class="container">
 
-      <div class="col-sm-6">
-        <ul class="messages">
-          <% for(var i=0; i<pastOrders.length; i++) { const orderDetails=pastOrders[i].orders.map(order=> {
-            if(order.name){
-            return order.name
-            }else{
-            return order.base + " " + order.flavor + " " + order.support
-            }
-            })
-
-            %>
-            <li class="message">
-              <span>
-                <%= pastOrders[i].shortDate %>
-              </span>
-              <span>
-                <%= pastOrders[i].qty %>
-              </span>
-              <span>
-                <%= pastOrders[i].priceTotal %>
-              </span>
-              <ul>
-
-                <% for(var j=0; j<orderDetails.length; j++) {%>
-                  <li>
-                    <span>
-                      <%= orderDetails[j] %>
-                    </span>
-                  </li>
-                  <% } %>
-              </ul>
-            </li>
-            <% } %>
-        </ul>
-
-
-
-      </div>
+    <div class="page-header text-center">
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
-  </div>
 
-    <footer class="footer mt-auto py-3 bg-light">
-      <div class="container">
-        <section class="mb-4 d-flex justify-content-center">
-          <!-- Facebook -->
-          <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-            data-mdb-ripple-color="dark"><i class="fab fa-facebook-f"></i></a>
-
-          <!-- Twitter -->
-          <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-            data-mdb-ripple-color="dark"><i class="fab fa-twitter"></i></a>
-
-          <!-- Google -->
-          <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-            data-mdb-ripple-color="dark"><i class="fab fa-google"></i></a>
-
-          <!-- Instagram -->
-          <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button"
-            data-mdb-ripple-color="dark"><i class="fab fa-instagram"></i></a>
-
-        </section>
-      </div>
-    </footer>
+   
 
 
 

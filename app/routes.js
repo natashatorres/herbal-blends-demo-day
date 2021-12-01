@@ -216,7 +216,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
         console.log("order", order)
         // const date = order.orderDate.toString().split('T')[0];
         const date = (order.orderDate.getMonth() + 1) + "-" + order.orderDate.getDate()  + "-" + order.orderDate.getFullYear() + order.orderDate.getHours() + order.orderDate.getMinutes()
-        const shortDate = (order.orderDate.getMonth() + 1) + "-" + order.orderDate.getDate()  + "-" + order.orderDate.getFullYear() + order.orderDate.getHours() + order.orderDate.getMinutes()
+        const shortDate = (order.orderDate.getMonth() + 1) + "-" + order.orderDate.getDate()  + "-" + order.orderDate.getFullYear() 
         console.log(date, order.orderDate.toString().split('T'))
         if (!groups[date]) {
           groups[date] = [];
