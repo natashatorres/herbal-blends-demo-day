@@ -1,20 +1,20 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
 }
 
-a{
+a {
   text-decoration: none;
   color: rgb(122 146 91);
 }
 
-nav{
+nav {
   background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -22,114 +22,168 @@ nav{
   font-size: 1.2rem;
 }
 
-.logo{
-width: 15em;
+.logo {
+  width: 15em;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   width: 10px;
 }
 
 
-video{
-    display: block;
-    margin: 2em auto;
-    
+video {
+  margin: 2em 0;
+
 }
 
-canvas{
-    display: block;
-    margin: 2em auto;
-    padding: 2em;
+canvas {
+  margin: 2em 0;
 }
 
 
-.identifyBut{
+.identifyBut {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(126 153 96);
-  color:white;
-  height:4em;
+  background-color: rgb(126 153 96);
+  color: white;
+  height: 4em;
   width: 20em;
-  border:none;
+  border: none;
   text-transform: uppercase;
 }
 
 
- /* stylelint-disable selector-list-comma-newline-after */
+#hero {
+  width: 100%;
+  height: 80vh;
+  background: #fff;
+  padding-top: 30%;
 
- .blog-header {
-  line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
 }
 
-.blog-header-logo {
-  font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-  font-size: 2.25rem;
+#hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #3e4450;
 }
 
-.blog-header-logo:hover {
-  text-decoration: none;
+#hero h2 {
+  color: #858ea1;
+  margin: 10px 0 30px 0;
+  font-size: 24px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/;
-  text-align: center;
-  color:rgb(126 153 96);
+#hero-2 h1{
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  color: rgb(126 153 96);
+  margin: 10px 0 30px 0;
+  font-size: 3em;
+}
+#hero-2 p {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  color: black;
+  margin: 10px 0 30px 0;
+  font-size: 1em;
 }
 
-.display-4 {
-  font-size: 2.5rem;
+#hero-2 span {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  color: black;
+  margin: 10px 0 30px 0;
+  font-size: 1em;
 }
-@media (min-width: 768px) {
-  .display-4 {
-    font-size: 3rem;
+
+
+
+#hero .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+
+#hero-2 .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (max-width: 991px) {
+  #hero {
+    height: 100vh;
+  }
+
+  #hero .animated {
+    -webkit-animation: none;
+    animation: none;
+  }
+
+  #hero .hero-img {
+    text-align: center;
+  }
+
+  #hero .hero-img img {
+    width: 50%;
   }
 }
 
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
+@media (max-width: 768px) {
+  #hero {
+    height: auto;
+    padding: 0;
+  }
 
-.nav-scroller .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
 
-.nav-scroller .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
-}
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
 
-.card-img-right {
-  height: 100%;
-  border-radius: 0 3px 3px 0;
-}
+  #hero-2 h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
 
-.flex-auto {
-  flex: 0 0 auto;
-}
-
-.h-250 { height: 250px; }
-@media (min-width: 768px) {
-  .h-md-250 { height: 250px; }
-}
-
-/* Pagination */
-.blog-pagination {
-  margin-bottom: 4rem;
-}
-.blog-pagination > .btn {
-  border-radius: 2rem;
-}
+  #hero-2 p {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
 
 
+  #hero .hero-img img {
+    width: 70%;
+  }
+}
+
+@media (max-width: 575px) {
+  #hero .hero-img img {
+    width: 50%;
+  }
+
+  #hero .center {
+    align-items: center;
+  }
+}
+
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
