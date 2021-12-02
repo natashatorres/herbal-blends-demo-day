@@ -58,13 +58,14 @@
               <h6 class="user-email"><%= user.local.email %> </h6>
 
               <div class="user-avatar">
-                <img src="/img/main.png" alt="Maxwell Admin" style="width:100px">
-              </div>
+                <% if(user.local.img !== ""){ %>
+                  <img src="<%=user.local.img %>" style="width:200px" class="profileImg">
+                <% } else { %>
+                  <img src="/img/main.png" style="width: 200px" class="profileImg">
+                  <% } %>              
+                </div>
 
-              <% if(user.local.img !== ""){ %>
-                <img src="<%= user.local.img %>" style="width:200px" class="profileImg">
-              <% } %>
-            
+             
               <form action="/imageUpload" method="POST" enctype="multipart/form-data">
                 <div class="uploadImg">
                   <input type="file" id="image" name="file-to-upload" value="" class="profilePic" required>
