@@ -1,20 +1,20 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
 }
 
-a{
+a {
   text-decoration: none;
   color: rgb(122 146 91);
 }
 
-nav{
+nav {
   background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
@@ -23,11 +23,11 @@ nav{
 
 }
 
-.logo{
-width: 12em;
+.logo {
+  width: 12em;
 }
 
-.navbar-toggler-icon{
+.navbar-toggler-icon {
   width: 8px;
 }
 
@@ -36,49 +36,55 @@ width: 12em;
   max-width: 960px;
 }
 
-h4{
+h4 {
   color: rgb(126 153 96) !important;
 }
 
-span{
+span {
   color: rgb(126 153 96) !important;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 
 }
 
-.rounded-pill{
+.rounded-pill {
   background-color: rgb(126 153 96) !important;
   color: white !important;
 
 }
 
 
-h3{
+h3 {
   margin-top: 40px;
 }
 
+h6 {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
 
 
-
-
-#qty{
+#qty {
   border: 1px solid black;
   padding: 0 10px;
 }
 
-#checkout{
+#checkout {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  background-color:rgb(126 153 96);
-  color:white;
-  height:4em;
+  background-color: rgb(126 153 96);
+  color: white;
+  height: 4em;
   width: 20em;
-  border:none;
+  border: none;
   text-transform: uppercase;
   margin-left: .5em;
   margin-bottom: .5em;
 }
 
-.hide{
-  display:none;
+.hide {
+  display: none;
 }
 
+@media (max-width: 768px) {
+  my-0{
+    font-size: .5em;
+  }
+}

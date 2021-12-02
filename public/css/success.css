@@ -15,12 +15,22 @@ a{
 }
 
 nav{
-  background-color: rgb(241 242 242);
+  background-color: rgb(126 153 96);
   margin-bottom: 0;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
+
 }
+
+.logo{
+width: 12em;
+}
+
+.navbar-toggler-icon{
+  width: 8px;
+}
+
 
 #confirmation{
   margin-top: 5rem;
@@ -47,9 +57,3 @@ width: 15em;
   width: 10px;
 }
   
-footer {
-  position: fixed;
-  height: 100px;
-  bottom: 0;
-  width: 100%;
-}

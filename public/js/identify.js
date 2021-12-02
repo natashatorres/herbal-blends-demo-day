@@ -33,46 +33,46 @@ click_button.addEventListener('click', function () {
                     "synonyms"]
             };
             console.log('about to fetch')
-            // fetch('https://api.plant.id/v2/identify', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(data),
-            // })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log('Success:', data);
-            //         //query string name = plant value = data (req.quer)
-            //         document.querySelector('#name').innerText = `Name: ${data.suggestions[0].plant_name}`
-            //         console.log(data.suggestions[0])
-            //         document.querySelector('#plantDescription').innerText = `Description: ${data.suggestions[0].plant_details.wiki_description.value}`
-            //         console.log(data.suggestions[0].plant_details)
-            //         document.querySelector('#plantImg').src = data.suggestions[0].similar_images[0].url
+            fetch('https://api.plant.id/v2/identify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    //query string name = plant value = data (req.quer)
+                    document.querySelector('#name').innerText = `Name: ${data.suggestions[0].plant_name}`
+                    console.log(data.suggestions[0])
+                    document.querySelector('#plantDescription').innerText = `Description: ${data.suggestions[0].plant_details.wiki_description.value}`
+                    console.log(data.suggestions[0].plant_details)
+                    document.querySelector('#plantImg').src = data.suggestions[0].similar_images[0].url
 
-            //         let plantName = data.suggestions[0].plant_name.toLowerCase()
+                    let plantName = data.suggestions[0].plant_name.toLowerCase()
 
-            //         fetch(`/findPlant/${plantName}`)
+                    fetch(`/findPlant/${plantName}`)
 
-            //             .then(response => response.json())
-            //             .then(plant => {
-            //                 let plantUrl = `/plant?plantname=${plant.name}&plantid=${plant._id}`
-            //                     console.log('plantResult:', plant, plantUrl);
-            //                 let button = document.createElement('a')
-            //                 button.href = "/store"
-            //                 let buttonText = document.createTextNode('Order Now')
-            //                 let text = document.createTextNode(`We have ${plantName} in stock!`)
-            //                 let element = document.getElementById('inStock')
-            //                 button.appendChild(buttonText)
-            //                 element.appendChild(text)
-            //                 element.appendChild(button)
+                        .then(response => response.json())
+                        .then(plant => {
+                            let plantUrl = `/plant?plantname=${plant.name}&plantid=${plant._id}`
+                                console.log('plantResult:', plant, plantUrl);
+                            let button = document.createElement('a')
+                            button.href = "/store"
+                            let buttonText = document.createTextNode('Order Now')
+                            let text = document.createTextNode(`We have ${plantName} in stock!`)
+                            let element = document.getElementById('inStock')
+                            button.appendChild(buttonText)
+                            element.appendChild(text)
+                            element.appendChild(button)
 
-            //             })
-            //             .catch((error) => {
-            //                 console.error('Error:', error);
-            //             });
-            //         //request 
-            //     })
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                    //request 
+                })
                 .catch((error) => {
                     console.error('Error:', error);
                 });

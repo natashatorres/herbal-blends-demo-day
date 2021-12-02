@@ -39,8 +39,6 @@
   
       <div class="collapse navbar-collapse justify-content-end" id="main-nav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/identify"><i class="fas fa-fingerprint"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default" title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
@@ -48,34 +46,42 @@
       </div>
     </nav>
   </header>
+
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center center">
+        <div class="col-lg-3 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center center">
           <button id="start-camera" class="identifyBut btn-md rounded">Turn On Camera</button>
           <video id="video" width="320" height="240" autoplay></video>
-          <button id="click-photo" class="identifyBut btn-md rounded">Take Photo</button>
-          <canvas id="canvas" width="320" height="240"></canvas>
      
         </div>
+        <div class="col-lg-3 pt-2 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center center">
+
+        <button id="click-photo" class="identifyBut btn-md rounded">Take Photo</button>
+        <canvas id="canvas" width="320" height="240"></canvas>
+        </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <h1> 
           <img src="img/herbshop.png" class="img-fluid animated" alt="an image of an herb">
         </div>
       </div>
     </div>
 
   </section>
+
+
+
   
   <section id="hero-2" class="d-flex align-items-center bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center center">
+        <div class="col-lg-6 pt-2 pt-lg-0 order-1 order-lg-1 d-flex flex-column justify-content-center center">
         <h1 id="name"></h1>
         <img src="" id="plantImg" class="img-fluid" width="300px">
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+        <div class="col-lg-6 order-2 order-lg-2 hero-img">
         <p id="plantDescription"></p>
-        <span id="inStock"></button>
+        <span id="inStock"></span>
         </div>
       </div>
     </div>

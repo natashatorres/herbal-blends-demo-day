@@ -64,9 +64,14 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray((err, result) => {
-
+      console.log(result)
       if (err) return console.log(err)
-      res.render('cart.ejs', { cart: result })
+      let total = 0
+      for(let i = 0; i < result.length; i++){
+        console.log("result here", result[i].price)
+        total += result[i].price 
+      }
+      res.render('cart.ejs', { cart: result, total: total})
     })
   })
 
@@ -153,7 +158,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
           console.log("result here", cartItems)
           const total = cartItems.reduce((a, b) => a.price + b.price, 0)
           console.log(total)
-          let html = "Reciept from Herbal Blends " + cartItems.map(item => `${item.base}, ${item.flavor}, ${item.support} Pre-Roll X ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
+          let html = "Reciept from Herbal Blends " + cartItems.map(item => `${item.name}, ${item.base}, ${item.flavor}, ${item.support} Blend ${item.qty} ${item.price}.00`) + ` Amount Charged: $${total}.00` + " If you have any questions, contact us at herbal-blends@gmail.com."
           sendMail(req.user.local.email, "Your Herbal Blends receipt", html)
           res.render('success.ejs');
         });
