@@ -170,6 +170,11 @@ form{
   #hero .hero-img img {
     width: 30%;
   }
+
+  .d-inline{
+    margin: 0 auto;
+
+  }
 }
 @media (max-width: 575px) {
   #hero .hero-img img {
