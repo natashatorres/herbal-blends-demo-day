@@ -149,6 +149,10 @@ form{
   #hero .hero-img img {
     width: 50%;
   }
+  .d-inline{
+    margin: 0 auto;
+
+  }
 }
 @media (max-width: 768px) {
   #hero {

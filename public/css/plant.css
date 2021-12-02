@@ -1,34 +1,35 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  text-transform: uppercase;
-}
-
-a {
-  text-decoration: none;
-  color: rgb(122 146 91);
-}
-
-nav {
-  background-color: rgb(241 242 242);
-  margin-bottom: 0;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 1.2rem;
-}
-
-.logo {
-  width: 15em;
-}
-
-.navbar-toggler-icon {
-  width: 10px;
-}
+*{
+	box-sizing: border-box;
+  }
+  
+  body{
+	margin: 0;
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	text-transform: uppercase;
+  }
+  
+  a{
+	text-decoration: none;
+	color: rgb(122 146 91);
+  }
+  
+  nav{
+	background-color: rgb(126 153 96);
+	margin-bottom: 0;
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 1.2rem;
+  
+  }
+  
+  .logo{
+  width: 12em;
+  }
+  
+  .navbar-toggler-icon{
+	width: 8px;
+  }
 
 .hatnote {
   display: hidden;
@@ -37,13 +38,6 @@ nav {
 tr th {
   background-color: none !important;
 
-}
-
-footer {
-  position: fixed;
-  height: 100px;
-  bottom: 0;
-  width: 100%;
 }
 
 
@@ -58,7 +52,7 @@ footer {
 	margin: 0.5em 0 0.5em 1em;
 	padding: 0.2em;
 	/* @noflip */
-	float: right;
+	float: left;
 	/* @noflip */
 	clear: right;
 	font-size: 88%;
@@ -69,7 +63,7 @@ footer {
 	font-size: 125%;
 	font-weight: bold;
 	padding: 0.2em;
-	text-align: center;
+	text-align: left;
 }
 
 .infobox tr,
@@ -93,10 +87,7 @@ footer {
 	border: 0;
 }
 
-.infobox.sisterproject {
-	width: 20em;
-	font-size: 90%;
-}
+
 
 .infobox.standard-talk {
 	border: 1px solid #c0c090;
@@ -126,4 +117,10 @@ footer {
 
 .references{
   display: none;
+}
+
+p{
+	padding: 0 4em;
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	text-align: center;
 }
