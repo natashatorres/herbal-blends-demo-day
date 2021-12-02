@@ -17,16 +17,11 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   let upload = multer({ storage: storage });
 
 
-
   // home page ===================================================================
   app.get('/', (req, res) => {
     res.render('index.ejs');
   })
 
-  // about ===============================================================
-  app.get('/about', function (req, res) {
-    res.render('about.ejs');
-  });
 
   //store  ===============================================================
   app.get('/store', function (req, res) {
@@ -80,33 +75,12 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     res.render('confirmation.ejs');
   });
 
-  // cart routes ===============================================================
-
   app.post('/cart', isLoggedIn, (req, res) => {
     //created a new document that went into messages collection
     console.log(req.body)
     db.collection('cart').insertOne({
       _id: req.body.id,
       name: req.body.name,
-      base: req.body.base,
-      flavor: req.body.flavor,
-      support: req.body.support,
-      price: 10,
-      qty: 1,
-      userId: req.user._id,
-      completed: false
-    }, (err, result) => {
-      if (err) return console.log(err)
-      console.log('saved to database')
-      res.redirect('/store') /// create a get cart page
-    })
-  })
-
-  app.post('/allHerbsCart', isLoggedIn, (req, res) => {
-    //created a new document that went into messages collection
-    console.log(req.body)
-    db.collection('cart').insertOne({
-      _id: req.body.id,
       base: req.body.base,
       flavor: req.body.flavor,
       support: req.body.support,
@@ -193,12 +167,11 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   });
 
   // IDENTIFY PLANT ==============================
-
   app.get('/identify', function (req, res) {
-
     res.render('identify.ejs');
   });
-  //pure api looks through data base 
+
+  //PURE API LOOKS THROUGH DATABASE
   app.get('/findPlant/:scientificName', function (req, res) {
     let scientificName = req.params.scientificName
     console.log(scientificName)
@@ -209,15 +182,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     })
   });
 
-
-  // app.get('/handlePlantsId', function (req, res) {
-  //   let plantName = req.query.plant
-
-  //   console.log(plantName)
-  //   //scientific names
-  //   //find text in an array create a filter for scientifc name 
-  //   res.render('handlePlantsId.ejs', {plantName, data});
-  // });
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
@@ -282,31 +246,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       callback(result)
     })
   }
-
-  // app.post('/imageUpload', upload.single('image'), (req, res, next) => {
-  //   console.log('starting image upload')
-  //   const obj = {
-  //     name: req.body.name,
-  //     desc: req.body.desc,
-  //     img: {
-  //       data: '/public/uploads/' + req.file.filename,
-  //       contentType: 'image/png'
-  //     }
-  //   }
-  //   console.log(obj)
-  //   userSchema.findOneAndUpdate({
-  //     _id: req.user._id,
-  //   },
-  //     obj, (err, item) => {
-  //       if (err) {
-  //         console.log(err);
-  //       }
-  //       else {
-  //         console.log('Saved image to database')
-  //         res.redirect('/profile');
-  //       }
-  //     });
-  // });
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {

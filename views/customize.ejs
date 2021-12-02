@@ -37,85 +37,84 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-   
+
       <div class="collapse navbar-collapse justify-content-end" id="main-nav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="/identify"><i class="fas fa-fingerprint"></i></a></li>
-          <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default" title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
+          <li class="nav-item"><a class="nav-link" href="/profile" class="btn btn-default"
+              title="Herb Identification"><i class="fas fa-user-circle"></i></a></li>
           <li class="nav-item"><a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         </ul>
       </div>
     </nav>
-   
+
     <div class="container mt-5 d-block">
       <div class="row justify-content-center">
-      <h1 class="">Customize your own blend</h1>
-      <p class="">Pick one herb from each category.</p>
+        <h1 class="">Customize your own blend</h1>
+        <p class="">Pick one herb from each category.</p>
       </div>
     </div>
-  
-    <div class="container-xl">  
+
+    <div class="container-xl">
       <form action="/cart" method="POST">
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<base.length; i++) {%>
             <div class="col-xxl-3 col-md-12 d-flex justify-content-center mb-3">
               <div class="card text-center" style="width: 18rem;height:30rem;">
                 <img src="img/mugwort.png" class="base" alt="an image of dried herbs" width="200px">
-              
+
                 <div class="card-body">
-                    <span class="herbName">
-                      <a href="/plant?plantname=<%= base[i].alternateNames[0]%>">
-                        <%= base[i].name %>
-                      </a>
-                    </span>
-                    <span class="herbProp">
-                      <%= base[i].component %>
-                    </span>
-                    <span class="herbProp">
-                      <%= base[i].medicinalProp %>
-                    </span>
-                    <label>
-                      <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
-                      <i class="fas fa-plus"></i>
-                    </label>
+                  <span class="herbName">
+                    <a href="/plant?plantname=<%= base[i].alternateNames[0]%>">
+                      <%= base[i].name %>
+                    </a>
+                  </span>
+                  <span class="herbProp">
+                    <%= base[i].component %>
+                  </span>
+                  <span class="herbProp">
+                    <%= base[i].medicinalProp %>
+                  </span>
+                  <label>
+                    <input type="radio" id="<%= base[i].name%>" name="base" value="<%= base[i].name%>">
+                    <i class="fas fa-plus"></i>
+                  </label>
                 </div>
               </div>
             </div>
             <% } %>
         </div>
-    
+
         <!-- flavor herbs -->
-        
+
         <div class="row justify-content-center mt-3">
           <% for(var i=0; i<flavor.length; i++) {%>
             <div class="col-xxl-3 col-md-12  d-flex justify-content-center mb-3">
               <div class="card text-center" style="width: 18rem;height:30rem;">
-                  <img src="img/mint.png" class="flavor" width="200px">
-                <div class="card-body"> 
-                    <span class="herbName card-text">
-                      <a href="/plant?plantname=<%= flavor[i].alternateNames[0]%>" class="card-text">
-                        <%= flavor[i].name %>
-                      </a>
-                    </span>
+                <img src="img/mint.png" class="flavor" width="200px">
+                <div class="card-body">
+                  <span class="herbName card-text">
+                    <a href="/plant?plantname=<%= flavor[i].alternateNames[0]%>" class="card-text">
+                      <%= flavor[i].name %>
+                    </a>
+                  </span>
 
-                    <span class="herbProp">
-                      <%= flavor[i].component %>
-                    </span>
-                    <span class="herbProp">
-                      <%= flavor[i].medicinalProp %>
-                    </span>
-                    <label>
-                      <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
-                      <i class="fas fa-plus"></i>
-                    </label>
+                  <span class="herbProp">
+                    <%= flavor[i].component %>
+                  </span>
+                  <span class="herbProp">
+                    <%= flavor[i].medicinalProp %>
+                  </span>
+                  <label>
+                    <input type="radio" id="<%= flavor[i].name%>" name="flavor" value="<%= flavor[i].name%>">
+                    <i class="fas fa-plus"></i>
+                  </label>
                 </div>
               </div>
             </div>
             <% } %>
         </div>
-    
+
         <!-- support -->
         <div class="row justify-content-center">
           <% for(var i=0; i<base.length; i++) {%>
@@ -125,42 +124,42 @@
                   <img src="img/skullCap.jpg" class="support mt-3">
                 </label>
                 <div class="card-body">
-                    <span class="herbName">
-                      <a href="/plant?plantname=<%= support[i].alternateNames %>">
-                        <%= support[i].name %>
-                      </a>
-                    </span>
-                    <span class="herbProp">
-                      <%= support[i].component %>
-                    </span>
-                    <span class="herbProp">
-                      <%= support[i].medicinalProp %>
-                    </span>
-                    <label>
-                      <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
-                      <i class="fas fa-plus"></i>
-                    </label>
+                  <span class="herbName">
+                    <a href="/plant?plantname=<%= support[i].alternateNames %>">
+                      <%= support[i].name %>
+                    </a>
+                  </span>
+                  <span class="herbProp">
+                    <%= support[i].component %>
+                  </span>
+                  <span class="herbProp">
+                    <%= support[i].medicinalProp %>
+                  </span>
+                  <label>
+                    <input type="radio" id="<%= support[i].name%>" name="support" value="<%= support[i].name%>">
+                    <i class="fas fa-plus"></i>
+                  </label>
                 </div>
               </div>
             </div>
             <% } %>
         </div>
-    
+
         <section class="button">
           <button type="submit" class="submitOrder btn-md rounded" style="width: 18rem;">Add To Cart</button>
         </section>
       </form>
     </div>
-    
- 
-    
-    
-      <script src="index.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    
-    
-    </body>
-    
-    </html>
+
+
+
+
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
