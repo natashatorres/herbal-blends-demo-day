@@ -11,7 +11,7 @@ user.js:
 
 identify.js
 - allows you to identify plant through Plant ID Api
-- camera access/abiity to take photos
+- camera access/ability to take photos
 
 cart.js
 - allows users to remove orders from cart, and update quantity
