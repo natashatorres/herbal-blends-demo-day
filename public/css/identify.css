@@ -40,6 +40,9 @@ canvas {
   width: 320px;
 }
 
+.hidden{
+  display: none;
+}
 
 .identifyBut {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
