@@ -12,24 +12,24 @@ camera_button.addEventListener('click', async function () {
     const context = canvas.getContext('2d');
     context.clearRect(0, 0, canvas.width, canvas.height)
     identification.classList.add('hidden')
-  
+
 });
 
 //fetch within the capture image button
 click_button.addEventListener('click', function () {
-    
+
     video.classList.add('hidden')
     identification.classList.remove('hidden')
 
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-    let image_data_url = canvas.toDataURL('image/jpeg');
-    canvas.toBlob(function (blob) {
 
+    let image_data_url = canvas.toDataURL('image/jpeg');
+
+    canvas.toBlob(function (blob) {
         let reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = function () {
             let base64data = reader.result;
-            console.log(base64data);
             const data = {
                 api_key: "pcyJyiOfcEr5FCQWpqJL9eHrnMEbSquXTrUGwSpp9iYc9xV65o",
                 images: [base64data],
@@ -53,11 +53,8 @@ click_button.addEventListener('click', function () {
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    //query string name = plant value = data (req.quer)
                     document.querySelector('#name').innerText = `Name: ${data.suggestions[0].plant_name}`
-                    console.log(data.suggestions[0])
                     document.querySelector('#plantDescription').innerText = `Description: ${data.suggestions[0].plant_details.wiki_description.value}`
-                    console.log(data.suggestions[0].plant_details)
                     document.querySelector('#plantImg').src = data.suggestions[0].similar_images[0].url
 
                     let plantName = data.suggestions[0].plant_name.toLowerCase()
@@ -67,21 +64,20 @@ click_button.addEventListener('click', function () {
                         .then(response => response.json())
                         .then(plant => {
                             let plantUrl = `/plant?plantname=${plant.name}&plantid=${plant._id}`
-                                console.log('plantResult:', plant, plantUrl);
+                            
                             let button = document.createElement('a')
                             button.href = "/store"
+                            
                             let buttonText = document.createTextNode('Order Now')
                             let text = document.createTextNode(`We have ${plantName} in stock!`)
                             let element = document.getElementById('inStock')
                             button.appendChild(buttonText)
                             element.appendChild(text)
                             element.appendChild(button)
-
                         })
                         .catch((error) => {
                             console.error('Error:', error);
                         });
-                    //request 
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -92,7 +88,7 @@ click_button.addEventListener('click', function () {
     console.log(image_data_url);
 });
 
-/// plantID api documentation 
+
 document.querySelector('button').onclick = function sendIdentification() {
     const files = [...document.querySelector('input[type=file]').files];
     const promises = files.map((file) => {

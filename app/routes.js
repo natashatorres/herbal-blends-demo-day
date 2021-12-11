@@ -59,25 +59,18 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   // cart ================================================================
   app.get('/cart', isLoggedIn, (req, res) => {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray((err, result) => {
-      console.log(result)
       if (err) return console.log(err)
       let total = 0
       for (let i = 0; i < result.length; i++) {
-        console.log("result here", result[i].price)
         total += result[i].price
       }
       res.render('cart.ejs', { cart: result, total: total })
     })
   })
 
-  app.get('/confirmation', function (req, res) {
-    req.logout();
-    res.render('confirmation.ejs');
-  });
 
   app.post('/cart', isLoggedIn, (req, res) => {
     //created a new document that went into messages collection
-    console.log(req.body)
     db.collection('cart').insertOne({
       _id: req.body.id,
       name: req.body.name,
@@ -123,15 +116,14 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   })
 
   //stripe confirmation pages ==============================================
+
   app.get('/success', function (req, res) {
     db.collection('cart').find({ userId: ObjectId(req.user._id), completed: false }).toArray(async (err, cartItems) => {
       db.collection('cart').updateMany({ $and: [{ userId: ObjectId(req.user._id) }, { completed: false }] }, {
         $set: { completed: true, orderDate: new Date() }
       },
         async (err, updateResult) => {
-          console.log("result here", cartItems)
           const total = cartItems.reduce((a, b) => a += b.price, 0)
-          console.log("total here", total)
           function makeName(item) {
             let itemName = item.name
             if (!itemName) {
@@ -174,7 +166,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   //PURE API LOOKS THROUGH DATABASE
   app.get('/findPlant/:scientificName', function (req, res) {
     let scientificName = req.params.scientificName
-    console.log(scientificName)
     db.collection('herbs').findOne({ alternateNames: { $in: [scientificName] } }, (err, result) => {
       if (err) return console.log(err)
       console.log(result)
@@ -189,11 +180,8 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       if (err) return console.log(err)
 
       const groups = result.reduce((groups, order) => {
-        console.log("order", order)
-        // const date = order.orderDate.toString().split('T')[0];
         const date = (order.orderDate.getMonth() + 1) + "-" + order.orderDate.getDate() + "-" + order.orderDate.getFullYear() + order.orderDate.getHours() + order.orderDate.getMinutes()
         const shortDate = (order.orderDate.getMonth() + 1) + "-" + order.orderDate.getDate() + "-" + order.orderDate.getFullYear()
-        console.log(date, order.orderDate.toString().split('T'))
         if (!groups[date]) {
           groups[date] = [];
         }
@@ -211,7 +199,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
         };
       });
 
-      console.log("groups here", groups, "group array here", groupArrays)
 
       res.render('profile.ejs', {
         user: req.user,
@@ -246,6 +233,23 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       callback(result)
     })
   }
+
+  app.post('/userInfo', (req, res) => {
+    db.collection('userInfo').save({
+      name: req.body.name, 
+      email: req.body.email,
+      phone: req.body.phone,
+      website: req.body.website,
+      street: req.body.street,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode
+    }, (err, result) => {
+      if (err) return console.log(err)
+      console.log('saved to database')
+      res.redirect('/profile')
+    })
+  })
 
   // LOGOUT ==============================
   app.get('/logout', function (req, res) {
@@ -302,7 +306,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       refresh_token: process.env.REFRESH_TOKEN
     });
     const accessToken = oauth2Client.getAccessToken()
-    console.log(process.env.EMAIL, process.env.CLIENT_SECRET, process.env.REFRESH_TOKEN)
     const smtpTransport = nodemailer.createTransport({
       service: "gmail",
       auth: {
