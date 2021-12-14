@@ -169,7 +169,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     db.collection('herbs').findOne({ alternateNames: { $in: [scientificName] } }, (err, result) => {
       if (err) return console.log(err)
       console.log(result)
-      res.send(result)
+      res.send({result: result})
     })
   });
 
