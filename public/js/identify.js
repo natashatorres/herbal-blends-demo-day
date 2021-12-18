@@ -29,8 +29,6 @@ click_button.addEventListener('click', function () {
     //it copies whatever is in the video into camera 
     canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    //adds a url to image    
-    // let image_data_url = canvas.toDataURL('image/jpeg');
 
     //takes whatever is in the canvas into a collection of bits, blob(binary large object, big pieces of data)
     
