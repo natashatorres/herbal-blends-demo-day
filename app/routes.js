@@ -1,9 +1,7 @@
-
 module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, fs) {
 
   //MULTER =======================================================================
-  const userSchema = require('./models/user')
-  const path = require('path');
+
 
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -22,7 +20,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     res.render('index.ejs');
   })
 
-
   //store  ===============================================================
   app.get('/store', function (req, res) {
     db.collection('herbs').find().toArray((err, result) => {
@@ -32,7 +29,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
         res.render('store.ejs', {
           specialblends: specBlendsResult,
           herbs: result,
-          user: req.user
         })
       })
     })
@@ -45,13 +41,11 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       const base = result.filter(h => h.component === "Base")
       const flavor = result.filter(h => h.component === "Flavor")
       const support = result.filter(h => h.component === "Support")
-      const liked = result.filter(h => h.component === 0)
+
       res.render('customize.ejs', {
         base: base,
         flavor: flavor,
         support: support,
-        liked: liked,
-        user: req.user
       })
     })
   });
@@ -62,8 +56,9 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
       if (err) return console.log(err)
       let total = 0
       for (let i = 0; i < result.length; i++) {
-        total += result[i].price
+        total += result[i].price * result[i].qty
       }
+      console.log(total)
       res.render('cart.ejs', { cart: result, total: total })
     })
   })
@@ -106,7 +101,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
   })
 
   app.delete('/cart', (req, res) => {
-    console.log(req.body.id, req.body.id === "616e19334e665fc02b002cbc", typeof req.body.id)
     db.collection('cart').findOneAndDelete({
       _id: ObjectId(req.body.id)
     }, (err, result) => {
@@ -173,6 +167,7 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
     })
   });
 
+  //order ID might be better
 
   // PROFILE SECTION =========================
   app.get('/profile', isLoggedIn, function (req, res) {
@@ -199,7 +194,6 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
         };
       });
 
-
       res.render('profile.ejs', {
         user: req.user,
         pastOrders: groupArrays,
@@ -209,12 +203,12 @@ module.exports = function (app, passport, db, ObjectId, stripe, fetch, multer, f
 
   //MULTER ==========================================
   app.post('/imageUpload', upload.single('file-to-upload'), (req, res, next) => {
-    insertDocuments(db, req, '/uploads/' + req.file.filename, () => {
+    addImage(db, req, '/uploads/' + req.file.filename, () => {
       res.redirect('/profile')
     });
   });
 
-  var insertDocuments = function (db, req, filePath, callback) {
+  var addImage = function (db, req, filePath, callback) {
     var collection = db.collection('users');
     var uId = ObjectId(req.session.passport.user)
     collection.findOneAndUpdate({

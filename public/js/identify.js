@@ -1,3 +1,6 @@
+//plant at home you can use this app
+
+
 let camera_button = document.querySelector("#start-camera");
 let video = document.querySelector("#video");
 let click_button = document.querySelector("#click-photo");

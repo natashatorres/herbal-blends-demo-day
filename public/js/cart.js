@@ -18,6 +18,7 @@ Array.from(qty).forEach(function(element) {
         body: JSON.stringify({
           'id': id,
           'qty': qty,
+          
         })
       })
       .then(response => {

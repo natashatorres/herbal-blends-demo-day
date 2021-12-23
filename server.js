@@ -18,6 +18,7 @@ if(process.env.ENVIRONMENT !== "production"){
   certificate = fs.readFileSync('server.cert', 'utf8');
   credentials= { key: privateKey, cert: certificate };
 }
+
 require('dotenv').config()
 
 
